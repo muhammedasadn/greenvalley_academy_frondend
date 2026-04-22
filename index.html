@@ -41,6 +41,14 @@
     .cta-btn:hover { background: #1a5c38; letter-spacing: 0.08em; }
     .cta-icon { transition: transform 0.25s ease; }
     .cta-btn:hover .cta-icon { transform: rotate(45deg); }
+    .cta-btn:focus-visible,
+    #mob-toggle:focus-visible,
+    #prev-btn:focus-visible,
+    #next-btn:focus-visible,
+    .dot:focus-visible {
+      outline: 2px solid #D1FB5F;
+      outline-offset: 3px;
+    }
 
     /* ── Logo card ── */
     .logo-card { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
