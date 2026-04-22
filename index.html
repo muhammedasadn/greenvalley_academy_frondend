@@ -316,15 +316,29 @@
     // Mobile menu toggle
     const mobToggle = document.getElementById('mob-toggle');
     const mobMenu   = document.getElementById('mob-menu');
+    const closeMobMenu = () => {
+      mobMenu.classList.add('hidden');
+      mobToggle.setAttribute('aria-expanded', 'false');
+    };
     mobToggle.addEventListener('click', () => {
       const open = !mobMenu.classList.contains('hidden');
       mobMenu.classList.toggle('hidden', open);
       mobToggle.setAttribute('aria-expanded', String(!open));
     });
-    mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-      mobMenu.classList.add('hidden');
-      mobToggle.setAttribute('aria-expanded', 'false');
-    }));
+    mobMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobMenu));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeMobMenu();
+      }
+    });
+    document.addEventListener('click', e => {
+      if (mobMenu.classList.contains('hidden')) {
+        return;
+      }
+      if (!mobMenu.contains(e.target) && !mobToggle.contains(e.target)) {
+        closeMobMenu();
+      }
+    });
 
     // Start
     startProgress();
