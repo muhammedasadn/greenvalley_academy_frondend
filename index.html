@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenValley Academy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="assets/js/main.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Poppins', sans-serif; margin: 0; }
+    h1, h2, h3 { font-family: 'Roboto', sans-serif; }
+
+    /* ── Slide fade ── */
+    .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.1s ease-in-out; }
+    .slide.active { opacity: 1; }
+
+    /* ── Progress dots ── */
+    .dot { width: 8px; height: 8px; border-radius: 9999px; background: rgba(255,255,255,0.4); transition: all 0.4s ease; cursor: pointer; }
+    .dot.active { width: 28px; background: #D1FB5F; }
+
+    /* ── CTA button hover ── */
+    .cta-btn { transition: background 0.2s ease, letter-spacing 0.2s ease; }
+    .cta-btn:hover { background: #1a5c38; letter-spacing: 0.08em; }
+    .cta-icon { transition: transform 0.25s ease; }
+    .cta-btn:hover .cta-icon { transform: rotate(45deg); }
+
+    /* ── Logo card ── */
+    .logo-card { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+
+    /* ── Nav pill ── */
+    .nav-pill { background: rgba(30,30,30,0.72); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    .nav-link { position: relative; padding-bottom: 4px; }
+    .nav-link.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 2px; background: #D1FB5F; border-radius: 2px; }
+
+    /* ── Slide-up text animation ── */
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .slide.active .animate-up { animation: slideUp 0.75s ease forwards; }
+    .slide.active .animate-up:nth-child(1) { animation-delay: 0.1s; opacity: 0; }
+    .slide.active .animate-up:nth-child(2) { animation-delay: 0.25s; opacity: 0; }
+    .slide.active .animate-up:nth-child(3) { animation-delay: 0.4s; opacity: 0; }
+    .slide.active .animate-up:nth-child(4) { animation-delay: 0.55s; opacity: 0; }
+    .slide.active .animate-up:nth-child(5) { animation-delay: 0.7s; opacity: 0; }
+  </style>
+</head>
+<body class="bg-black">
+
+  <!-- ═══════════════════════════════════════════
+       HERO CAROUSEL
+  ═══════════════════════════════════════════ -->
+  <section class="relative w-full h-screen min-h-[560px] overflow-hidden" aria-label="Hero carousel">
+
+    <!-- ── SLIDES ── -->
+
+    <!-- Slide 1: Women's Academy (Library) -->
+    <div class="slide active" role="group" aria-label="Slide 1 of 3">
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('assets/image/hero1.png');"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+      <div class="relative h-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 flex flex-col justify-center pt-24 pb-24">
+        <div class="max-w-xl lg:max-w-2xl">
+          <p class="animate-up text-white font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight mb-0">GET READY TO</p>
+          <p class="animate-up text-white font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight">EXPLORE <span class="text-secondary">GREEN VALLEY</span></p>
+          <p class="animate-up text-secondary font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight mb-5">WOMEN'S ACADEMY</p>
+          <p class="animate-up text-white/70 text-sm sm:text-base font-light leading-relaxed max-w-sm sm:max-w-md mb-8">Empowering young women with knowledge, values, and vision. A premier institution dedicated to holistic excellence for the next generation of women leaders.</p>
+          <div class="animate-up flex items-center gap-3">
+            <button class="cta-btn flex items-center gap-3 bg-primary text-white font-heading font-bold text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-3.5 rounded-full">
+              EXPLORE MORE
+              <span class="cta-icon w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7" stroke="#00301C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: ILP Academy (Male students library) -->
+    <div class="slide" role="group" aria-label="Slide 2 of 3">
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('assets/image/hero2.jpg');"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+      <div class="relative h-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 flex flex-col justify-center pt-24 pb-24">
+        <div class="max-w-xl lg:max-w-2xl">
+          <p class="animate-up text-white font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight mb-0">GET READY TO</p>
+          <p class="animate-up text-white font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight">EXPLORE <span class="text-secondary">GREEN VALLEY</span></p>
+          <p class="animate-up text-secondary font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight mb-5">ILP ACADEMY</p>
+          <p class="animate-up text-white/70 text-sm sm:text-base font-light leading-relaxed max-w-sm sm:max-w-md mb-8">An Integrated Learning Programme that bridges academic excellence with character development, preparing students for life beyond the classroom.</p>
+          <div class="animate-up flex items-center gap-3">
+            <button class="cta-btn flex items-center gap-3 bg-primary text-white font-heading font-bold text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-3.5 rounded-full">
+              EXPLORE MORE
+              <span class="cta-icon w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7" stroke="#00301C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Main Campus Building -->
+    <div class="slide" role="group" aria-label="Slide 3 of 3">
+      <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('assets/image/hero3.jpg');"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-black/75 via-black/40 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+      <div class="relative h-full max-w-7xl mx-auto px-5 sm:px-8 md:px-12 flex flex-col justify-center pt-24 pb-24">
+        <div class="max-w-xl lg:max-w-2xl">
+          <p class="animate-up text-white font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight mb-0">GET READY TO</p>
+          <p class="animate-up text-white font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight">EXPLORE <span class="text-secondary">GREEN VALLEY</span></p>
+          <p class="animate-up text-secondary font-heading font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.08] tracking-tight mb-5">ACADEMY MANJERI</p>
+          <p class="animate-up text-white/70 text-sm sm:text-base font-light leading-relaxed max-w-sm sm:max-w-md mb-8">Rooted in Manjeri's heartland, GreenValley Academy stands as a beacon of quality education — where tradition meets innovation across every discipline.</p>
+          <div class="animate-up flex items-center gap-3">
+            <button class="cta-btn flex items-center gap-3 bg-primary text-white font-heading font-bold text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-3.5 rounded-full">
+              EXPLORE MORE
+              <span class="cta-icon w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 13L13 3M13 3H6M13 3v7" stroke="#00301C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NAVBAR OVERLAY ── -->
+    <header class="absolute top-0 left-0 right-0 z-30 px-4 sm:px-6 md:px-8 pt-4 flex items-start justify-between gap-4">
+
+      <!-- Logo Card -->
+      <a href="#" class="logo-card flex items-center gap-2.5 px-4 py-3 rounded-2xl shadow-lg flex-shrink-0" aria-label="GreenValley Academy Home">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full" aria-hidden="true">
+            <!-- Tree / leaf emblem -->
+            <circle cx="24" cy="24" r="22" fill="#00301C" opacity="0.08"/>
+            <path d="M24 6C18 6 12 11 12 18c0 5 3 9 8 13l4 4 4-4c5-4 8-8 8-13 0-7-6-12-12-12z" fill="#00301C"/>
+            <path d="M24 6C20 6 16 9 16 14c0 3 1.5 5.5 4 7.5l4 3.5 4-3.5C30.5 19.5 32 17 32 14c0-5-4-8-8-8z" fill="#D1FB5F" opacity="0.6"/>
+            <circle cx="24" cy="38" r="2.5" fill="#00301C" opacity="0.4"/>
+            <rect x="23" y="32" width="2" height="8" rx="1" fill="#00301C" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <p class="font-heading font-black text-primary text-sm sm:text-base leading-none tracking-tight">GREENVALLEY</p>
+          <p class="font-heading font-black text-primary text-sm sm:text-base leading-none tracking-tight">ACADEMY</p>
+          <p class="text-primary/40 text-[9px] sm:text-[10px] font-body font-medium tracking-widest uppercase mt-0.5">Manjeri, Kerala</p>
+        </div>
+      </a>
+
+      <!-- Nav Pill — hidden on mobile, shown on md+ -->
+      <nav class="nav-pill hidden md:flex items-center gap-1 px-4 py-3 rounded-2xl" aria-label="Main navigation">
+        <a href="#" class="nav-link active text-white font-body font-semibold text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">HOME</a>
+        <a href="#" class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">ABOUT US</a>
+        <a href="#" class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">PROGRAMMES</a>
+        <a href="#" class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">CAMPUS LIFE</a>
+        <a href="#" class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">FACULTY</a>
+        <a href="#" class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">NEWS & EVENTS</a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button id="mob-toggle" class="nav-pill md:hidden flex flex-col gap-1.5 p-3 rounded-xl mt-1" aria-label="Open menu" aria-expanded="false">
+        <span class="block w-5 h-0.5 bg-white rounded"></span>
+        <span class="block w-5 h-0.5 bg-white rounded"></span>
+        <span class="block w-3.5 h-0.5 bg-white rounded self-end"></span>
+      </button>
+    </header>
+
+    <!-- Mobile Nav Drawer -->
+    <div id="mob-menu" class="absolute top-0 left-0 right-0 z-40 bg-primary/95 backdrop-blur-md pt-20 pb-8 px-6 hidden md:hidden">
+      <nav class="flex flex-col gap-1" aria-label="Mobile navigation">
+        <a href="#" class="text-secondary font-heading font-bold text-sm py-3 border-b border-white/10">HOME</a>
+        <a href="#" class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors">ABOUT US</a>
+        <a href="#" class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors">PROGRAMMES</a>
+        <a href="#" class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors">CAMPUS LIFE</a>
+        <a href="#" class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors">FACULTY</a>
+        <a href="#" class="text-white/80 font-body font-medium text-sm py-3 hover:text-secondary transition-colors">NEWS & EVENTS</a>
+      </nav>
+    </div>
+
+    <!-- ── BOTTOM CONTROLS ── -->
+    <div class="absolute bottom-8 left-0 right-0 z-20 max-w-7xl mx-auto px-5 sm:px-8 md:px-12 flex items-center justify-between">
+
+      <!-- Slide counter -->
+      <p class="text-white/40 text-xs font-body font-medium tracking-widest select-none">
+        <span id="slide-current" class="text-white font-bold text-sm">01</span>
+        <span class="mx-1.5">/</span>
+        <span>03</span>
+      </p>
+
+      <!-- Dots -->
+      <div class="flex items-center gap-2" role="tablist" aria-label="Slide indicators">
+        <button class="dot active" role="tab" aria-selected="true" aria-label="Go to slide 1" data-slide="0"></button>
+        <button class="dot" role="tab" aria-selected="false" aria-label="Go to slide 2" data-slide="1"></button>
+        <button class="dot" role="tab" aria-selected="false" aria-label="Go to slide 3" data-slide="2"></button>
+      </div>
+
+      <!-- Prev / Next -->
+      <div class="flex items-center gap-2">
+        <button id="prev-btn" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center text-white/60 hover:border-secondary hover:text-secondary transition-all duration-200" aria-label="Previous slide">
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button id="next-btn" class="w-9 h-9 rounded-full border border-white/25 flex items-center justify-center text-white/60 hover:border-secondary hover:text-secondary transition-all duration-200" aria-label="Next slide">
+          <svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── PROGRESS BAR ── -->
+    <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10 z-20">
+      <div id="progress-bar" class="h-full bg-secondary transition-none" style="width: 0%"></div>
+    </div>
+
+  </section>
+
+</body>
+</html>
