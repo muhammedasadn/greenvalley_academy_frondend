@@ -85,6 +85,23 @@
     .slide.active .animate-up:nth-child(3) { animation-delay: 0.4s; opacity: 0; }
     .slide.active .animate-up:nth-child(4) { animation-delay: 0.55s; opacity: 0; }
     .slide.active .animate-up:nth-child(5) { animation-delay: 0.7s; opacity: 0; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .slide,
+      .dot,
+      .cta-btn,
+      .cta-icon,
+      #prev-btn,
+      #next-btn {
+        transition: none !important;
+      }
+
+      .slide.active .animate-up {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-black">
