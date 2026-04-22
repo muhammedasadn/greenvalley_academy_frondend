@@ -277,7 +277,12 @@
     const bar    = document.getElementById('progress-bar');
     const DURATION = 5000; // ms per slide
     let current = 0;
-    let timer, progTimer, progStart;
+    let timer;
+
+    function stopProgress() {
+      clearTimeout(timer);
+      bar.style.transition = 'none';
+    }
 
     function goTo(idx) {
       slides[current].classList.remove('active');
@@ -292,10 +297,8 @@
     }
 
     function startProgress() {
-      bar.style.transition = 'none';
+      stopProgress();
       bar.style.width = '0%';
-      clearTimeout(timer);
-      cancelAnimationFrame(progTimer);
       // Trigger reflow
       void bar.offsetWidth;
       bar.style.transition = `width ${DURATION}ms linear`;
@@ -306,18 +309,18 @@
     // Dot clicks
     dots.forEach(dot => {
       dot.addEventListener('click', () => {
-        clearTimeout(timer);
+        stopProgress();
         goTo(parseInt(dot.dataset.slide));
       });
     });
 
     // Arrow clicks
-    document.getElementById('prev-btn').addEventListener('click', () => { clearTimeout(timer); goTo(current - 1); });
-    document.getElementById('next-btn').addEventListener('click', () => { clearTimeout(timer); goTo(current + 1); });
+    document.getElementById('prev-btn').addEventListener('click', () => { stopProgress(); goTo(current - 1); });
+    document.getElementById('next-btn').addEventListener('click', () => { stopProgress(); goTo(current + 1); });
 
     // Pause on hover
     const section = document.querySelector('section');
-    section.addEventListener('mouseenter', () => { clearTimeout(timer); bar.style.transition = 'none'; });
+    section.addEventListener('mouseenter', stopProgress);
     section.addEventListener('mouseleave', () => startProgress());
 
     // Touch swipe
@@ -326,7 +329,7 @@
     section.addEventListener('touchend', e => {
       if (touchX === null) return;
       const dx = e.changedTouches[0].clientX - touchX;
-      if (Math.abs(dx) > 50) { clearTimeout(timer); goTo(dx < 0 ? current + 1 : current - 1); }
+      if (Math.abs(dx) > 50) { stopProgress(); goTo(dx < 0 ? current + 1 : current - 1); }
       touchX = null;
     }, { passive: true });
 
