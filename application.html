@@ -1,0 +1,1482 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admission Form — GreenValley Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#00301C", secondary: "#D1FB5F" },
+            fontFamily: {
+              heading: ["Roboto", "sans-serif"],
+              body: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Roboto", sans-serif;
+      }
+
+      /* Nav */
+      .logo-card {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+      }
+      .nav-pill {
+        background: rgba(20, 20, 20, 0.72);
+        backdrop-filter: blur(12px);
+      }
+      .nav-link {
+        position: relative;
+        padding-bottom: 4px;
+      }
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #d1fb5f;
+        border-radius: 2px;
+      }
+
+      /* Mobile menu */
+      #mob-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          opacity 0.3s ease;
+        opacity: 0;
+      }
+      #mob-menu.open {
+        max-height: 500px;
+        opacity: 1;
+      }
+
+      /* Inputs */
+      .form-input {
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1.5px solid #d0d0d0;
+        padding: 10px 0;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.875rem;
+        color: #00301c;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+      .form-input::placeholder {
+        color: #aaa;
+      }
+      .form-input:focus {
+        border-bottom-color: #00301c;
+      }
+      .form-select {
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1.5px solid #d0d0d0;
+        padding: 10px 0;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.875rem;
+        color: #aaa;
+        outline: none;
+        appearance: none;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+      }
+      .form-select:focus {
+        border-bottom-color: #00301c;
+        color: #00301c;
+      }
+
+      /* Step badge */
+      .step-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #00301c;
+        color: #d1fb5f;
+        font-family: "Roboto", sans-serif;
+        font-weight: 900;
+        font-size: 0.8rem;
+        flex-shrink: 0;
+      }
+
+      /* Captcha display */
+      .captcha-display {
+        background: #d1fb5f;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-family: "Roboto", sans-serif;
+        font-weight: 900;
+        font-size: 1.25rem;
+        letter-spacing: 0.25em;
+        color: #00301c;
+        user-select: none;
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+      }
+      .captcha-display::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 4px,
+          rgba(0, 48, 28, 0.06) 4px,
+          rgba(0, 48, 28, 0.06) 5px
+        );
+      }
+
+      /* Submit btn */
+      .submit-btn {
+        transition:
+          background 0.22s ease,
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+      .submit-btn:hover {
+        background: #b8e84a;
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(209, 251, 95, 0.4);
+      }
+
+      /* Sidebar card hover */
+      .side-card {
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+      .side-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(0, 48, 28, 0.14);
+      }
+
+      /* Foot links */
+      .foot-link {
+        transition:
+          color 0.2s ease,
+          padding-left 0.2s ease;
+      }
+      .foot-link:hover {
+        color: #d1fb5f;
+        padding-left: 4px;
+      }
+      .foot-social-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .foot-social-link:hover {
+        color: #d1fb5f;
+        transform: translateX(3px);
+      }
+
+      /* Scroll reveal */
+      .adm-fade {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 0.65s ease,
+          transform 0.65s ease;
+      }
+      .adm-fade.vis {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* Wave divider */
+      .wave-divider {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-primary antialiased">
+    <!-- ══════════════════════ NAVBAR ══════════════════════ -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-8 pt-4 flex items-start justify-between gap-4"
+    >
+      <!-- Logo Card -->
+      <a
+        href="hero-section.html"
+        class="logo-card flex items-center gap-2.5 px-4 py-3 rounded-2xl shadow-lg flex-shrink-0"
+        aria-label="GreenValley Academy Home"
+      >
+        <div class="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
+          <svg
+            viewBox="0 0 48 48"
+            fill="none"
+            class="w-full h-full"
+            aria-hidden="true"
+          >
+            <circle cx="24" cy="24" r="22" fill="#00301C" opacity="0.08" />
+            <path
+              d="M24 6C18 6 12 11 12 18c0 5 3 9 8 13l4 4 4-4c5-4 8-8 8-13 0-7-6-12-12-12z"
+              fill="#00301C"
+            />
+            <path
+              d="M24 6C20 6 16 9 16 14c0 3 1.5 5.5 4 7.5l4 3.5 4-3.5C30.5 19.5 32 17 32 14c0-5-4-8-8-8z"
+              fill="#D1FB5F"
+              opacity="0.6"
+            />
+            <circle cx="24" cy="38" r="2.5" fill="#00301C" opacity="0.4" />
+            <rect
+              x="23"
+              y="32"
+              width="2"
+              height="8"
+              rx="1"
+              fill="#00301C"
+              opacity="0.3"
+            />
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <p
+            class="font-heading font-black text-primary text-sm sm:text-base leading-none tracking-tight"
+          >
+            GREENVALLEY
+          </p>
+          <p
+            class="font-heading font-black text-primary text-sm sm:text-base leading-none tracking-tight"
+          >
+            ACADEMY
+          </p>
+          <p
+            class="text-primary/40 text-[9px] font-body font-medium tracking-widest uppercase mt-0.5"
+          >
+            Manjeri, Kerala
+          </p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav
+        class="nav-pill hidden md:flex items-center gap-1 px-4 py-3 rounded-2xl"
+        aria-label="Main navigation"
+      >
+        <a
+          href="./index.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >HOME</a
+        >
+        <a
+          href="./about.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >ABOUT US</a
+        >
+        <a
+          href="./application.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >COURSES</a
+        >
+        <a
+          href="./womens_academy.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >ACTIVITIES</a
+        >
+        <a
+          href="./about.html"
+          class="nav-link active text-white font-body font-semibold text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >ADMISSION</a
+        >
+        <a
+          href="./application.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >WOMEN'S ACADEMY</a
+        >
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="mob-toggle"
+        class="nav-pill md:hidden flex flex-col gap-1.5 p-3 rounded-xl mt-1"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span class="block w-5 h-0.5 bg-white rounded" id="mb1"></span>
+        <span class="block w-5 h-0.5 bg-white rounded" id="mb2"></span>
+        <span
+          class="block w-3.5 h-0.5 bg-white rounded self-end"
+          id="mb3"
+        ></span>
+      </button>
+    </header>
+
+    <!-- Mobile drawer -->
+    <div
+      id="mob-menu"
+      class="fixed top-0 left-0 right-0 z-40 bg-primary/97 backdrop-blur-md pt-20 pb-8 px-6 md:hidden"
+    >
+      <nav class="flex flex-col gap-1">
+        <a
+          href="./index.html"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >HOME</a
+        >
+        <a
+          href="./womens_academy.html"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >ABOUT US</a
+        >
+        <a
+          href="#"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >COURSES</a
+        >
+        <a
+          href="#"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >ACTIVITIES</a
+        >
+        <a
+          href="#"
+          class="text-secondary font-heading font-bold text-sm py-3 border-b border-white/10"
+          >ADMISSION</a
+        >
+        <a
+          href="#"
+          class="text-white/80 font-body font-medium text-sm py-3 hover:text-secondary transition-colors"
+          >WOMEN'S ACADEMY</a
+        >
+      </nav>
+    </div>
+
+    <!-- ══════════════════════ HERO ══════════════════════ -->
+    <section
+      class="relative w-full min-h-[50vh] md:min-h-[56vh] flex items-center justify-center overflow-hidden"
+      aria-label="Admission Form Hero"
+    >
+      <!-- Background illustration: campus building exterior -->
+      <div class="absolute inset-0">
+        <!-- Replace with your own image -->
+        <img
+          src="assets/image/admission.png"
+          alt="Green Valley Academy Campus"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <!-- Dark overlay -->
+      <div class="absolute inset-0 bg-primary/70"></div>
+      <!-- Content -->
+      <div class="relative text-center px-5 pt-20">
+        <h1
+          class="font-heading font-black text-white text-4xl sm:text-5xl md:text-6xl tracking-tight"
+        >
+          ADMISSION FORM
+        </h1>
+        <p
+          class="mt-4 text-white/55 font-body font-light text-sm sm:text-base max-w-md mx-auto leading-relaxed"
+        >
+          Begin your journey with GreenValley Academy — complete the form below
+          to apply.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ MAIN CONTENT ══════════════════════ -->
+    <main class="bg-white py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
+        <div class="grid lg:grid-cols-3 gap-10 xl:gap-16 items-start">
+          <!-- ── FORM (2/3 width) ── -->
+          <div class="lg:col-span-2 adm-fade">
+            <!-- Form header -->
+            <div class="mb-10">
+              <p
+                class="text-secondary bg-primary font-body font-semibold text-xs tracking-widest uppercase px-3 py-1.5 rounded-full inline-block mb-4"
+              >
+                Application for Enrollment
+              </p>
+              <h2
+                class="font-heading font-black text-primary text-3xl sm:text-4xl md:text-5xl leading-tight tracking-tight mb-4"
+              >
+                APPLY FOR ADMISSION
+              </h2>
+              <p
+                class="text-primary/55 font-body font-light text-base leading-relaxed max-w-lg"
+              >
+                Join a community dedicated to academic excellence and personal
+                growth. Please complete the admission form below with accurate
+                information.
+              </p>
+            </div>
+
+            <form
+              novalidate
+              class="space-y-12"
+              aria-label="Admission application form"
+            >
+              <!-- ── SECTION 01: Personal Identity ── -->
+              <fieldset>
+                <legend class="flex items-center gap-3 mb-8">
+                  <span class="step-badge">01</span>
+                  <h3
+                    class="font-heading font-black text-primary text-xl md:text-2xl tracking-tight"
+                  >
+                    Personal Identity
+                  </h3>
+                </legend>
+
+                <div class="space-y-8">
+                  <!-- Row: Name + Father name -->
+                  <div class="grid sm:grid-cols-2 gap-8">
+                    <div>
+                      <label
+                        class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                        for="applicant-name"
+                        >Name of Applicant</label
+                      >
+                      <input
+                        id="applicant-name"
+                        type="text"
+                        placeholder="Full Legal Name"
+                        autocomplete="name"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                        for="guardian-name"
+                        >Father / Guardian Name</label
+                      >
+                      <input
+                        id="guardian-name"
+                        type="text"
+                        placeholder="Full Name"
+                        autocomplete="off"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Row: DOB + Mother tongue -->
+                  <div class="grid sm:grid-cols-2 gap-8">
+                    <div>
+                      <label
+                        class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                        for="dob"
+                        >Date of Birth</label
+                      >
+                      <input
+                        id="dob"
+                        type="date"
+                        placeholder="mm/dd/yyyy"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                        for="mother-tongue"
+                        >Mother Tongue</label
+                      >
+                      <input
+                        id="mother-tongue"
+                        type="text"
+                        placeholder="Native Language"
+                        autocomplete="off"
+                        class="form-input"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Preferred Course -->
+                  <div>
+                    <label
+                      class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                      for="preferred-course"
+                      >Preferred Course</label
+                    >
+                    <div class="relative">
+                      <select
+                        id="preferred-course"
+                        class="form-select pr-8"
+                        required
+                      >
+                        <option value="" disabled selected>
+                          Select Academic Program
+                        </option>
+                        <option>
+                          Integrated Learning Programme (ILP) — 5 Years
+                        </option>
+                        <option>Islamic Life Solutions (ILS) — 3 Years</option>
+                        <option>Computer Application</option>
+                        <option>Graphic Designing</option>
+                        <option>Electrical Technician</option>
+                        <option>Account Executive</option>
+                        <option>Arabic Translator</option>
+                      </select>
+                      <svg
+                        class="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40 pointer-events-none"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M4 6l4 4 4-4"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Divider -->
+              <div class="border-t border-primary/8"></div>
+
+              <!-- ── SECTION 02: Residential Data ── -->
+              <fieldset>
+                <legend class="flex items-center gap-3 mb-8">
+                  <span class="step-badge">02</span>
+                  <h3
+                    class="font-heading font-black text-primary text-xl md:text-2xl tracking-tight"
+                  >
+                    Residential Data
+                  </h3>
+                </legend>
+
+                <div class="space-y-8">
+                  <!-- Row: Address + Pin code -->
+                  <div class="grid sm:grid-cols-3 gap-8">
+                    <div class="sm:col-span-2">
+                      <label
+                        class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                        for="address"
+                        >House Name / No</label
+                      >
+                      <input
+                        id="address"
+                        type="text"
+                        placeholder="Street Address"
+                        autocomplete="street-address"
+                        class="form-input"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                        for="pincode"
+                        >Pin Code</label
+                      >
+                      <input
+                        id="pincode"
+                        type="text"
+                        placeholder="Postal Code"
+                        autocomplete="postal-code"
+                        maxlength="10"
+                        class="form-input"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Row: City + District + State -->
+                  <div class="grid sm:grid-cols-3 gap-8">
+                    <div>
+                      <label
+                        class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                        for="city"
+                        >Post Office / City</label
+                      >
+                      <input
+                        id="city"
+                        type="text"
+                        placeholder="Locality"
+                        autocomplete="address-level2"
+                        class="form-input"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                        for="district"
+                        >District</label
+                      >
+                      <input
+                        id="district"
+                        type="text"
+                        placeholder="Region"
+                        class="form-input"
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                        for="state"
+                        >State</label
+                      >
+                      <input
+                        id="state"
+                        type="text"
+                        placeholder="State/Province"
+                        autocomplete="address-level1"
+                        class="form-input"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Divider -->
+              <div class="border-t border-primary/8"></div>
+
+              <!-- ── SECTION 03: Connectivity & Evaluation ── -->
+              <fieldset>
+                <legend class="flex items-center gap-3 mb-8">
+                  <span class="step-badge">03</span>
+                  <h3
+                    class="font-heading font-black text-primary text-xl md:text-2xl tracking-tight"
+                  >
+                    Connectivity &amp; Evaluation
+                  </h3>
+                </legend>
+
+                <div class="space-y-8">
+                  <!-- Row: Phone numbers -->
+                  <div class="grid sm:grid-cols-2 gap-8">
+                    <div>
+                      <label
+                        class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                        for="primary-phone"
+                        >Primary Mobile No</label
+                      >
+                      <input
+                        id="primary-phone"
+                        type="tel"
+                        placeholder="+1 (000) 000-0000"
+                        autocomplete="tel"
+                        class="form-input"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label
+                        class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                        for="secondary-phone"
+                        >Secondary Contact No</label
+                      >
+                      <input
+                        id="secondary-phone"
+                        type="tel"
+                        placeholder="Alternative Phone"
+                        class="form-input"
+                      />
+                    </div>
+                  </div>
+
+                  <!-- Exam center -->
+                  <div>
+                    <label
+                      class="block text-primary/50 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+                      for="exam-center"
+                      >Preferred Entrance Exam Center</label
+                    >
+                    <div class="relative">
+                      <select id="exam-center" class="form-select pr-8">
+                        <option value="" disabled selected>
+                          Select Location
+                        </option>
+                        <option>Manjeri — Green Valley Campus</option>
+                        <option>Malappuram — District Centre</option>
+                        <option>Kozhikode — City Centre</option>
+                        <option>Thrissur — Regional Hub</option>
+                        <option>Kochi — Metropolitan Centre</option>
+                      </select>
+                      <svg
+                        class="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-primary/40 pointer-events-none"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M4 6l4 4 4-4"
+                          stroke="currentColor"
+                          stroke-width="1.6"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- CAPTCHA -->
+                  <div>
+                    <p
+                      class="text-red-500 font-body font-semibold text-xs tracking-widest uppercase mb-4"
+                    >
+                      Security Verification
+                    </p>
+                    <div
+                      class="flex flex-col sm:flex-row items-start sm:items-center gap-4"
+                    >
+                      <div class="flex-1 w-full">
+                        <input
+                          id="captcha-input"
+                          type="text"
+                          placeholder="Enter Captcha Code"
+                          maxlength="6"
+                          class="form-input"
+                          autocomplete="off"
+                        />
+                      </div>
+                      <div
+                        class="captcha-display flex-shrink-0 select-none"
+                        id="captcha-display"
+                        aria-label="Captcha code"
+                        title="Captcha: read the characters shown"
+                      >
+                        <span id="captcha-text">X 7 R 2 G 9</span>
+                      </div>
+                      <button
+                        type="button"
+                        onclick="refreshCaptcha()"
+                        class="flex-shrink-0 text-primary/40 hover:text-primary transition-colors"
+                        aria-label="Refresh captcha"
+                        title="Generate new captcha"
+                      >
+                        <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none">
+                          <path
+                            d="M4 10a6 6 0 1011.3-2.8M4 10V6m0 4H8"
+                            stroke="currentColor"
+                            stroke-width="1.6"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- ── SUBMIT ── -->
+              <div class="pt-2">
+                <button
+                  type="submit"
+                  class="submit-btn bg-secondary text-primary font-heading font-black text-base px-10 py-4 rounded-full shadow-lg"
+                >
+                  Submit Application
+                </button>
+                <p
+                  class="mt-4 text-primary/40 font-body font-light text-xs leading-relaxed max-w-md"
+                >
+                  By submitting, you agree to the Green Valley Academy terms of
+                  enrollment and data privacy policies.
+                </p>
+              </div>
+            </form>
+          </div>
+
+          <!-- ── SIDEBAR (1/3 width) ── -->
+          <aside
+            class="flex flex-col gap-5 lg:sticky lg:top-28 adm-fade"
+            style="transition-delay: 0.15s"
+          >
+            <!-- Card 1: Institutional image placeholder -->
+            <div
+              class="side-card rounded-2xl overflow-hidden shadow-lg border border-primary/8 aspect-video bg-primary"
+            >
+              <svg
+                viewBox="0 0 400 225"
+                class="w-full h-full"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="xMidYMid slice"
+                aria-label="GreenValley Academy campus"
+                aria-hidden="true"
+              >
+                <rect width="400" height="225" fill="#00301C" />
+                <ellipse
+                  cx="80"
+                  cy="100"
+                  rx="65"
+                  ry="100"
+                  fill="#1a5c38"
+                  opacity="0.7"
+                />
+                <ellipse
+                  cx="320"
+                  cy="100"
+                  rx="70"
+                  ry="110"
+                  fill="#1a5c38"
+                  opacity="0.7"
+                />
+                <rect
+                  x="120"
+                  y="60"
+                  width="160"
+                  height="110"
+                  fill="#005a33"
+                  rx="3"
+                />
+                <polygon points="110,60 200,20 290,60" fill="#004828" />
+                <rect
+                  x="155"
+                  y="75"
+                  width="25"
+                  height="32"
+                  rx="2"
+                  fill="#87CEEB"
+                  opacity="0.5"
+                />
+                <rect
+                  x="220"
+                  y="75"
+                  width="25"
+                  height="32"
+                  rx="2"
+                  fill="#87CEEB"
+                  opacity="0.5"
+                />
+                <rect
+                  x="183"
+                  y="107"
+                  width="35"
+                  height="40"
+                  rx="17"
+                  fill="#002618"
+                />
+                <rect x="0" y="170" width="400" height="55" fill="#002618" />
+                <text
+                  x="200"
+                  y="107"
+                  text-anchor="middle"
+                  fill="#D1FB5F"
+                  font-size="9"
+                  font-family="Roboto"
+                  font-weight="900"
+                  opacity="0.7"
+                >
+                  GREEN VALLEY ACADEMY
+                </text>
+                <rect
+                  x="178"
+                  y="15"
+                  width="45"
+                  height="8"
+                  rx="2"
+                  fill="#D1FB5F"
+                  opacity="0.8"
+                />
+                <line
+                  x1="200"
+                  y1="8"
+                  x2="200"
+                  y2="15"
+                  stroke="#D1FB5F"
+                  stroke-width="1.5"
+                />
+              </svg>
+            </div>
+
+            <!-- Card 2: Institutional Standards -->
+            <div class="side-card bg-primary rounded-2xl p-6 shadow-xl">
+              <h4
+                class="font-heading font-bold text-white text-base mb-5 tracking-tight"
+              >
+                Institutional Standards
+              </h4>
+              <ul class="space-y-5">
+                <li class="flex items-start gap-3">
+                  <span
+                    class="w-7 h-7 rounded-lg bg-secondary/15 flex items-center justify-center flex-shrink-0 mt-0.5"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <circle
+                        cx="7"
+                        cy="7"
+                        r="6"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                      />
+                      <path
+                        d="M4.5 7.5l2 2 3.5-4"
+                        stroke="currentColor"
+                        stroke-width="1.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <div>
+                    <p class="font-heading font-bold text-white text-sm mb-0.5">
+                      Academic Integrity
+                    </p>
+                    <p
+                      class="text-white/45 font-body font-light text-xs leading-relaxed"
+                    >
+                      We uphold the highest global standards for research and
+                      instruction.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span
+                    class="w-7 h-7 rounded-lg bg-secondary/15 flex items-center justify-center flex-shrink-0 mt-0.5"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M7 2a2.5 2.5 0 100 5 2.5 2.5 0 000-5zM3 12.5a4 4 0 018 0"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                        stroke-linecap="round"
+                      />
+                      <circle
+                        cx="11"
+                        cy="10.5"
+                        r="1.5"
+                        fill="currentColor"
+                        opacity="0.7"
+                      />
+                      <path
+                        d="M10.5 12.5h1"
+                        stroke="currentColor"
+                        stroke-width="1"
+                        stroke-linecap="round"
+                      />
+                    </svg>
+                  </span>
+                  <div>
+                    <p class="font-heading font-bold text-white text-sm mb-0.5">
+                      Inclusive Growth
+                    </p>
+                    <p
+                      class="text-white/45 font-body font-light text-xs leading-relaxed"
+                    >
+                      Fostering an environment where every student's voice is
+                      empowered.
+                    </p>
+                  </div>
+                </li>
+                <li class="flex items-start gap-3">
+                  <span
+                    class="w-7 h-7 rounded-lg bg-secondary/15 flex items-center justify-center flex-shrink-0 mt-0.5"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 11.5s1.5-4 5-4 5 4 5 4"
+                        stroke="currentColor"
+                        stroke-width="1.3"
+                        stroke-linecap="round"
+                      />
+                      <path
+                        d="M7 2l1.2 2.5H11l-2.2 1.7.9 2.8L7 7.5 4.3 9l.9-2.8L3 4.5h2.8z"
+                        stroke="currentColor"
+                        stroke-width="1.2"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                  <div>
+                    <p class="font-heading font-bold text-white text-sm mb-0.5">
+                      Legacy Building
+                    </p>
+                    <p
+                      class="text-white/45 font-body font-light text-xs leading-relaxed"
+                    >
+                      Graduates enter the workforce with a prestigious archival
+                      heritage.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Card 3: Need Assistance -->
+            <div class="side-card bg-primary rounded-2xl p-6 shadow-xl">
+              <p
+                class="text-white/40 font-body font-semibold text-xs tracking-widest uppercase mb-3"
+              >
+                Need Assistance?
+              </p>
+              <p
+                class="text-white/60 font-body font-light text-sm leading-relaxed mb-5"
+              >
+                Our admissions counselors are available Monday through Friday,
+                9:00 AM to 5:00 PM to help with your application.
+              </p>
+              <a
+                href="tel:18004733825"
+                class="inline-flex items-center gap-2.5 text-secondary font-heading font-bold text-sm hover:brightness-110 transition-all"
+              >
+                <svg
+                  class="w-4 h-4 flex-shrink-0"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M13 10.7l-2-1a.8.8 0 00-.9.2l-.9 1a7.4 7.4 0 01-3.3-3.3l1-.9a.8.8 0 00.2-.9l-1-2A.8.8 0 005.4 4H4a.8.8 0 00-.8.8A9.6 9.6 0 0012.8 14a.8.8 0 00.8-.8v-1.7a.8.8 0 00-.6-.8z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                1-800-GREEN-VALLEY
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <!-- ══════════════════════ FOOTER ══════════════════════ -->
+    <div class="wave-divider">
+      <svg
+        viewBox="0 0 1440 56"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        class="w-full h-10 md:h-14"
+        aria-hidden="true"
+      >
+        <path
+          d="M0,32 C240,60 480,0 720,32 C960,60 1200,0 1440,32 L1440,56 L0,56 Z"
+          fill="#00301C"
+        />
+      </svg>
+    </div>
+
+    <footer class="bg-primary pt-14 pb-0" aria-label="Site footer">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 pb-14 border-b border-white/10"
+        >
+          <!-- Col 1: Info -->
+          <div>
+            <div class="flex items-center gap-2.5 mb-5">
+              <span
+                class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 2C8 2 4 5 4 10c0 4 3 7 8 12 5-5 8-8 8-12 0-5-4-8-8-8z"
+                    fill="#00301C"
+                  />
+                </svg>
+              </span>
+              <span
+                class="font-heading font-black text-white text-base tracking-tight"
+                >GREEN<span class="text-secondary">VALLEY</span></span
+              >
+            </div>
+            <ul class="space-y-3.5 text-white/50 text-sm font-body font-light">
+              <li class="flex items-start gap-2.5">
+                <svg
+                  class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M8 8.5a2 2 0 100-4 2 2 0 000 4z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M8 14s5-4 5-7a5 5 0 00-10 0c0 3 5 7 5 7z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                </svg>
+                <span
+                  >Green Valley Academy, Pulpatta P.O., Manjeri, Malappuram,
+                  Kerala – 676123</span
+                >
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg
+                  class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M13 10.7l-2-1a.8.8 0 00-.9.2l-.9 1a7.4 7.4 0 01-3.3-3.3l1-.9a.8.8 0 00.2-.9l-1-2A.8.8 0 005.4 4H4a.8.8 0 00-.8.8A9.6 9.6 0 0012.8 14a.8.8 0 00.8-.8v-1.7a.8.8 0 00-.6-.8z"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <span>+91 48329644291 | +91 4832969898</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg
+                  class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <rect
+                    x="2"
+                    y="4"
+                    width="12"
+                    height="9"
+                    rx="1.5"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M2 6l6 4 6-4"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                </svg>
+                <a
+                  href="mailto:greenvalleymanjeri@gmail.com"
+                  class="hover:text-secondary transition-colors break-all"
+                  >greenvalleymanjeri@gmail.com</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 2: Courses -->
+          <div>
+            <h4
+              class="font-heading font-bold text-white text-base mb-5 tracking-tight"
+            >
+              Courses
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Computer Application</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Graphic Designing</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Electrical Technician</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Account Executive</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Arabic Translator</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Quick Links -->
+          <div>
+            <h4
+              class="font-heading font-bold text-white text-base mb-5 tracking-tight"
+            >
+              Quick Links
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Faculty Profiles</a
+                >
+              </li>
+              <li>
+                <a
+                  href="admission-form.html"
+                  class="foot-link text-secondary text-sm font-body font-medium"
+                  >Admission Form</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Campus Tour</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >News &amp; Archive</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Student Portal</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Connect -->
+          <div>
+            <h4
+              class="font-heading font-bold text-white text-base mb-5 tracking-tight"
+            >
+              Connect
+            </h4>
+            <ul class="space-y-3.5">
+              <li>
+                <a
+                  href="#"
+                  class="foot-social-link text-white/50 text-sm font-body font-light"
+                >
+                  <span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M8 1.6a6.4 6.4 0 100 12.8A6.4 6.4 0 008 1.6zM5.5 5.5h1.8V4.7c0-1.2.6-1.8 2-1.8h1.3v1.8H9.4c-.5 0-.5.2-.5.5V5.5h1.7l-.2 2H8.9V13H7V7.5H5.8l.2-2z"
+                      />
+                    </svg>
+                  </span>
+                  Facebook
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-social-link text-white/50 text-sm font-body font-light"
+                >
+                  <span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                    >
+                      <rect x="3" y="3" width="10" height="10" rx="3" />
+                      <circle cx="8" cy="8" r="2.5" />
+                      <circle
+                        cx="11.2"
+                        cy="4.8"
+                        r="0.7"
+                        fill="currentColor"
+                        stroke="none"
+                      />
+                    </svg>
+                  </span>
+                  Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-social-link text-white/50 text-sm font-body font-light"
+                >
+                  <span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M15 3.5a6 6 0 01-1.65.46 2.9 2.9 0 001.26-1.6 5.8 5.8 0 01-1.83.7A2.9 2.9 0 008 5.57a8.2 8.2 0 01-5.96-3.02 2.9 2.9 0 00.9 3.86 2.87 2.87 0 01-1.31-.36v.04a2.9 2.9 0 002.32 2.84 2.9 2.9 0 01-1.3.05 2.9 2.9 0 002.7 2.01A5.82 5.82 0 011 12.4a8.2 8.2 0 004.44 1.3c5.33 0 8.25-4.42 8.25-8.25l-.01-.38A5.9 5.9 0 0015 3.5z"
+                      />
+                    </svg>
+                  </span>
+                  Twitter
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-social-link text-white/50 text-sm font-body font-light"
+                >
+                  <span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
+                      <circle
+                        cx="11"
+                        cy="11"
+                        r="4"
+                        fill="#25D366"
+                        opacity="0.9"
+                      />
+                      <path
+                        d="M9.5 10.2c.2.7.8 1.3 1.5 1.5l.5-.5c.1-.1.3-.1.4 0l.8.6c.1.1.1.3 0 .4-.4.5-1.1.7-1.7.4a3.5 3.5 0 01-2-2c-.3-.6-.1-1.3.4-1.7.1-.1.3-.1.4 0l.6.8c.1.1.1.3 0 .4l-.9.1z"
+                        fill="white"
+                      />
+                    </svg>
+                  </span>
+                  WhatsApp
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Bottom bar -->
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between gap-3 py-5 text-white/30 text-xs font-body font-light"
+        >
+          <p>© COPYRIGHT 2024 GREEN VALLEY ACADEMY. ALL RIGHTS RESERVED.</p>
+          <div class="flex gap-5">
+            <a
+              href="#"
+              class="hover:text-secondary transition-colors tracking-wide"
+              >PRIVACY POLICY</a
+            >
+            <a
+              href="#"
+              class="hover:text-secondary transition-colors tracking-wide"
+              >TERMS OF SERVICE</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ── Mobile menu ──
+      var mobToggle = document.getElementById("mob-toggle");
+      var mobMenu = document.getElementById("mob-menu");
+      var mb1 = document.getElementById("mb1"),
+        mb2 = document.getElementById("mb2"),
+        mb3 = document.getElementById("mb3");
+      var open = false;
+      mobToggle.addEventListener("click", function () {
+        open = !open;
+        mobMenu.classList.toggle("open", open);
+        mobToggle.setAttribute("aria-expanded", open);
+        mb1.style.transform = open ? "rotate(45deg) translate(4px,5px)" : "";
+        mb2.style.opacity = open ? "0" : "1";
+        mb3.style.transform = open ? "rotate(-45deg) translate(4px,-5px)" : "";
+        mb3.style.width = open ? "20px" : "";
+      });
+      mobMenu.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          open = false;
+          mobMenu.classList.remove("open");
+          mobToggle.setAttribute("aria-expanded", "false");
+          mb1.style.transform = mb2.style.opacity = mb3.style.transform = "";
+          mb3.style.width = "";
+        });
+      });
+
+      // ── Captcha generator ──
+      var CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      function genCaptcha() {
+        var code = "";
+        for (var i = 0; i < 6; i++)
+          code += CHARS[Math.floor(Math.random() * CHARS.length)];
+        return code.split("").join(" ");
+      }
+      function refreshCaptcha() {
+        document.getElementById("captcha-text").textContent = genCaptcha();
+      }
+
+      // ── Scroll reveal ──
+      var fadeEls = document.querySelectorAll(".adm-fade");
+      var obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("vis");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      fadeEls.forEach(function (el) {
+        obs.observe(el);
+      });
+
+      // ── Form submit (prevent default, show confirmation) ──
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var btn = this.querySelector("button[type=submit]");
+        btn.textContent = "✓ Application Submitted";
+        btn.classList.add("opacity-75");
+        btn.disabled = true;
+      });
+    </script>
+  </body>
+</html>
