@@ -1,559 +1,1326 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Us — GreenValley Academy</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { primary: '#00301C', secondary: '#D1FB5F' },
-          fontFamily: { heading: ['Roboto','sans-serif'], body: ['Poppins','sans-serif'] },
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us — GreenValley Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#00301C", secondary: "#D1FB5F" },
+            fontFamily: {
+              heading: ["Roboto", "sans-serif"],
+              body: ["Poppins", "sans-serif"],
+            },
+          },
         },
-      },
-    };
-  </script>
-  <style>
-    body { font-family: 'Poppins', sans-serif; margin:0; }
-    h1,h2,h3,h4 { font-family: 'Roboto', sans-serif; }
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Roboto", sans-serif;
+      }
 
-    /* ── Nav ── */
-    .logo-card { background: rgba(255,255,255,0.92); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-    .nav-pill  { background: rgba(20,20,20,0.72);   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
-    .nav-link  { position: relative; padding-bottom: 4px; }
-    .nav-link.active::after { content:''; position:absolute; bottom:-2px; left:0; right:0; height:2px; background:#D1FB5F; border-radius:2px; }
-    #mob-menu { max-height:0; overflow:hidden; transition: max-height .35s ease, opacity .3s ease; opacity:0; }
-    #mob-menu.open { max-height:500px; opacity:1; }
+      /* ── Nav ── */
+      .logo-card {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+      .nav-pill {
+        background: rgba(20, 20, 20, 0.72);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .nav-link {
+        position: relative;
+        padding-bottom: 4px;
+      }
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #d1fb5f;
+        border-radius: 2px;
+      }
+      #mob-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          opacity 0.3s ease;
+        opacity: 0;
+      }
+      #mob-menu.open {
+        max-height: 500px;
+        opacity: 1;
+      }
 
-    /* ── Form inputs — bottom border style ── */
-    .c-input, .c-select, .c-textarea {
-      width: 100%; background: transparent;
-      border: none; border-bottom: 1.5px solid rgba(255,255,255,0.25);
-      padding: 10px 0; font-family: 'Poppins', sans-serif; font-size: 0.82rem;
-      color: white; outline: none;
-      transition: border-color .2s ease;
-    }
-    .c-input::placeholder, .c-textarea::placeholder { color: rgba(255,255,255,0.35); }
-    .c-input:focus, .c-select:focus, .c-textarea:focus { border-bottom-color: #D1FB5F; }
-    .c-select { appearance: none; cursor: pointer; color: rgba(255,255,255,0.4); }
-    .c-select option { background: #00301C; color: white; }
-    .c-textarea { resize: none; min-height: 80px; }
+      /* ── Form inputs — bottom border style ── */
+      .c-input,
+      .c-select,
+      .c-textarea {
+        width: 100%;
+        background: transparent;
+        border: none;
+        border-bottom: 1.5px solid rgba(255, 255, 255, 0.25);
+        padding: 10px 0;
+        font-family: "Poppins", sans-serif;
+        font-size: 0.82rem;
+        color: white;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+      .c-input::placeholder,
+      .c-textarea::placeholder {
+        color: rgba(255, 255, 255, 0.35);
+      }
+      .c-input:focus,
+      .c-select:focus,
+      .c-textarea:focus {
+        border-bottom-color: #d1fb5f;
+      }
+      .c-select {
+        appearance: none;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .c-select option {
+        background: #00301c;
+        color: white;
+      }
+      .c-textarea {
+        resize: none;
+        min-height: 80px;
+      }
 
-    /* ── Submit btn ── */
-    .submit-btn { transition: background .22s ease, transform .2s ease, letter-spacing .2s ease; }
-    .submit-btn:hover { background: #b8e84a; transform: translateY(-2px); letter-spacing: .04em; }
+      /* ── Submit btn ── */
+      .submit-btn {
+        transition:
+          background 0.22s ease,
+          transform 0.2s ease,
+          letter-spacing 0.2s ease;
+      }
+      .submit-btn:hover {
+        background: #b8e84a;
+        transform: translateY(-2px);
+        letter-spacing: 0.04em;
+      }
 
-    /* ── Icon links ── */
-    .contact-icon-btn { transition: background .2s ease, transform .2s ease; }
-    .contact-icon-btn:hover { background: #D1FB5F; transform: scale(1.08); }
-    .contact-icon-btn:hover svg { color: #00301C; }
+      /* ── Icon links ── */
+      .contact-icon-btn {
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
+      }
+      .contact-icon-btn:hover {
+        background: #d1fb5f;
+        transform: scale(1.08);
+      }
+      .contact-icon-btn:hover svg {
+        color: #00301c;
+      }
 
-    /* ── Foot links ── */
-    .foot-link { transition: color .2s ease, padding-left .2s ease; }
-    .foot-link:hover { color: #D1FB5F; padding-left: 4px; }
-    .foot-social-link { display: flex; align-items: center; gap: 10px; transition: color .2s ease, transform .2s ease; }
-    .foot-social-link:hover { color: #D1FB5F; transform: translateX(3px); }
+      /* ── Foot links ── */
+      .foot-link {
+        transition:
+          color 0.2s ease,
+          padding-left 0.2s ease;
+      }
+      .foot-link:hover {
+        color: #d1fb5f;
+        padding-left: 4px;
+      }
+      .foot-social-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .foot-social-link:hover {
+        color: #d1fb5f;
+        transform: translateX(3px);
+      }
 
-    /* ── Scroll reveal ── */
-    .c-fade { opacity:0; transform: translateY(36px); transition: opacity .68s ease, transform .68s ease; }
-    .c-fade.vis { opacity:1; transform: none; }
+      /* ── Scroll reveal ── */
+      .c-fade {
+        opacity: 0;
+        transform: translateY(36px);
+        transition:
+          opacity 0.68s ease,
+          transform 0.68s ease;
+      }
+      .c-fade.vis {
+        opacity: 1;
+        transform: none;
+      }
 
-    /* ── Wave ── */
-    .wave-divider { display:block; width:100%; overflow:hidden; line-height:0; }
+      /* ── Wave ── */
+      .wave-divider {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+      }
 
-    /* ── Map placeholder pulse ── */
-    @keyframes mapShimmer {
-      0%,100% { opacity:0.06; } 50% { opacity:0.12; }
-    }
-    .map-shimmer { animation: mapShimmer 2.5s ease-in-out infinite; }
-  </style>
-</head>
-<body class="bg-white text-primary antialiased">
-
-  <!-- ══════════ NAVBAR ══════════ -->
-  <header class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-8 pt-4 flex items-start justify-between gap-4">
-    <a href="hero-section.html" class="logo-card flex items-center gap-2.5 px-4 py-3 rounded-2xl shadow-lg flex-shrink-0" aria-label="GreenValley Academy Home">
-      <div class="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
-        <svg viewBox="0 0 48 48" fill="none" class="w-full h-full" aria-hidden="true">
-          <circle cx="24" cy="24" r="22" fill="#00301C" opacity="0.08"/>
-          <path d="M24 6C18 6 12 11 12 18c0 5 3 9 8 13l4 4 4-4c5-4 8-8 8-13 0-7-6-12-12-12z" fill="#00301C"/>
-          <path d="M24 6C20 6 16 9 16 14c0 3 1.5 5.5 4 7.5l4 3.5 4-3.5C30.5 19.5 32 17 32 14c0-5-4-8-8-8z" fill="#D1FB5F" opacity="0.6"/>
-          <circle cx="24" cy="38" r="2.5" fill="#00301C" opacity="0.4"/>
-          <rect x="23" y="32" width="2" height="8" rx="1" fill="#00301C" opacity="0.3"/>
-        </svg>
-      </div>
-      <div class="leading-tight">
-        <p class="font-heading font-black text-primary text-sm sm:text-base leading-none tracking-tight">GREENVALLEY</p>
-        <p class="font-heading font-black text-primary text-sm sm:text-base leading-none tracking-tight">ACADEMY</p>
-        <p class="text-primary/40 text-[9px] font-body font-medium tracking-widest uppercase mt-0.5">Manjeri, Kerala</p>
-      </div>
-    </a>
-
-    <nav class="nav-pill hidden md:flex items-center gap-1 px-4 py-3 rounded-2xl" aria-label="Main navigation">
-      <a href="hero-section.html" class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">HOME</a>
-      <a href="#"                 class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">ABOUT US</a>
-      <a href="#"                 class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">PROGRAMMES</a>
-      <a href="#"                 class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">CAMPUS LIFE</a>
-      <a href="#"                 class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">FACULTY</a>
-      <a href="#"                 class="nav-link active text-white font-body font-semibold text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap">NEWS &amp; EVENTS</a>
-    </nav>
-
-    <button id="mob-toggle" class="nav-pill md:hidden flex flex-col gap-1.5 p-3 rounded-xl mt-1" aria-label="Open menu" aria-expanded="false">
-      <span class="block w-5 h-0.5 bg-white rounded" id="mb1"></span>
-      <span class="block w-5 h-0.5 bg-white rounded" id="mb2"></span>
-      <span class="block w-3.5 h-0.5 bg-white rounded self-end" id="mb3"></span>
-    </button>
-  </header>
-
-  <div id="mob-menu" class="fixed top-0 left-0 right-0 z-40 bg-primary/97 backdrop-blur-md pt-20 pb-8 px-6 md:hidden">
-    <nav class="flex flex-col gap-1">
-      <a href="hero-section.html" class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors">HOME</a>
-      <a href="#" class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors">ABOUT US</a>
-      <a href="#" class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors">PROGRAMMES</a>
-      <a href="#" class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors">CAMPUS LIFE</a>
-      <a href="#" class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors">FACULTY</a>
-      <a href="#" class="text-secondary font-heading font-bold text-sm py-3">NEWS &amp; EVENTS</a>
-    </nav>
-  </div>
-
-  <!-- ══════════ HERO ══════════ -->
-  <section class="relative w-full min-h-[48vh] md:min-h-[55vh] flex items-center justify-center overflow-hidden" aria-label="Contact Us Hero">
-    <!-- Campus background illustration -->
-    <div class="absolute inset-0">
-      <svg viewBox="0 0 1440 560" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <linearGradient id="cHeroSky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#1a3a1a"/>
-            <stop offset="100%" stop-color="#0a2010"/>
-          </linearGradient>
-          <radialGradient id="cGlow" cx="50%" cy="40%" r="50%">
-            <stop offset="0%" stop-color="#3a6a3a" stop-opacity="0.4"/>
-            <stop offset="100%" stop-color="transparent"/>
-          </radialGradient>
-        </defs>
-        <rect width="1440" height="560" fill="url(#cHeroSky)"/>
-        <rect width="1440" height="560" fill="url(#cGlow)"/>
-        <!-- Dense canopy left -->
-        <ellipse cx="60"  cy="180" rx="110" ry="190" fill="#1a4a1a" opacity="0.95"/>
-        <ellipse cx="140" cy="160" rx="130" ry="210" fill="#2a5a2a" opacity="0.85"/>
-        <ellipse cx="240" cy="200" rx="110" ry="180" fill="#1a4a1a" opacity="0.9"/>
-        <ellipse cx="180" cy="230" rx="80"  ry="140" fill="#3a6a3a" opacity="0.7"/>
-        <!-- Palm centre-left -->
-        <rect x="330" y="90" width="16" height="360" rx="5" fill="#3d2a10" opacity="0.85"/>
-        <ellipse cx="338" cy="95"  rx="85" ry="32" fill="#2a5a1a" opacity="0.9"  transform="rotate(-18,338,95)"/>
-        <ellipse cx="338" cy="95"  rx="78" ry="28" fill="#3a6a2a" opacity="0.8"  transform="rotate(20,338,95)"/>
-        <ellipse cx="338" cy="95"  rx="70" ry="26" fill="#2a5a1a" opacity="0.75" transform="rotate(-42,338,95)"/>
-        <ellipse cx="338" cy="95"  rx="65" ry="24" fill="#4a7a3a" opacity="0.7"  transform="rotate(55,338,95)"/>
-        <!-- Campus building -->
-        <rect x="370" y="140" width="520" height="320" fill="#e8e2d5" opacity="0.78" rx="3"/>
-        <!-- Roofline -->
-        <rect x="360" y="132" width="540" height="16" fill="#c0b09a" opacity="0.7" rx="2"/>
-        <polygon points="370,132 630,58 890,132" fill="#b0a08a" opacity="0.5"/>
-        <!-- Signboard -->
-        <rect x="545" y="136" width="195" height="26" rx="4" fill="#00301C"/>
-        <text x="642" y="154" text-anchor="middle" fill="#D1FB5F" font-size="10" font-family="Roboto" font-weight="900" opacity="0.9">GREEN VALLEY ACADEMY</text>
-        <!-- Floor divider lines -->
-        <rect x="390" y="162" width="480" height="2" fill="#c8c0b0" opacity="0.5"/>
-        <rect x="390" y="255" width="480" height="2" fill="#c8c0b0" opacity="0.5"/>
-        <!-- Windows ground -->
-        <rect x="410" y="275" width="55" height="75" rx="2" fill="#87CEEB" opacity="0.38"/>
-        <rect x="495" y="275" width="55" height="75" rx="2" fill="#87CEEB" opacity="0.38"/>
-        <rect x="600" y="275" width="55" height="75" rx="2" fill="#87CEEB" opacity="0.38"/>
-        <rect x="710" y="275" width="55" height="75" rx="2" fill="#87CEEB" opacity="0.38"/>
-        <rect x="810" y="275" width="55" height="75" rx="2" fill="#87CEEB" opacity="0.38"/>
-        <!-- Windows upper -->
-        <rect x="415" y="176" width="45" height="55" rx="2" fill="#87CEEB" opacity="0.3"/>
-        <rect x="498" y="176" width="45" height="55" rx="2" fill="#87CEEB" opacity="0.3"/>
-        <rect x="606" y="176" width="45" height="55" rx="2" fill="#87CEEB" opacity="0.3"/>
-        <rect x="714" y="176" width="45" height="55" rx="2" fill="#87CEEB" opacity="0.3"/>
-        <rect x="815" y="176" width="45" height="55" rx="2" fill="#87CEEB" opacity="0.3"/>
-        <!-- Door -->
-        <rect x="603" y="310" width="60" height="150" rx="3" fill="#5c3d20" opacity="0.55"/>
-        <!-- Right canopy -->
-        <ellipse cx="1000" cy="200" rx="90"  ry="165" fill="#1a4a1a" opacity="0.9"/>
-        <ellipse cx="1080" cy="180" rx="115" ry="195" fill="#2a5a2a" opacity="0.85"/>
-        <ellipse cx="1180" cy="220" rx="105" ry="180" fill="#1a4a1a" opacity="0.9"/>
-        <ellipse cx="1300" cy="200" rx="135" ry="205" fill="#2a5a2a" opacity="0.85"/>
-        <ellipse cx="1420" cy="190" rx="120" ry="200" fill="#1a4a1a" opacity="0.95"/>
-        <!-- Ground -->
-        <rect x="0" y="455" width="1440" height="105" fill="#0d2010" opacity="0.8"/>
-        <rect x="580" y="455" width="130" height="105" fill="#a89060" opacity="0.3"/>
-      </svg>
-    </div>
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-primary/72"></div>
-    <!-- Hero text -->
-    <div class="relative text-center px-5 pt-24 pb-12">
-      <h1 class="font-heading font-black text-white text-4xl sm:text-5xl md:text-6xl tracking-tight mb-5">CONTACT US</h1>
-      <p class="text-white/55 font-body font-light text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words.
-      </p>
-    </div>
-  </section>
-
-  <!-- ══════════ CONTACT MAIN ══════════ -->
-  <main class="bg-white py-16 md:py-24">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
-
-      <div class="grid md:grid-cols-2 gap-10 xl:gap-16 items-start">
-
-        <!-- ── LEFT: Info ── -->
-        <div class="c-fade">
-          <h2 class="font-heading font-black text-primary text-3xl sm:text-4xl md:text-[2.6rem] leading-[1.1] tracking-tight mb-8">
-            We Are Always Ready<br/>
-            To Help You And<br/>
-            Answer your<br/>
-            Questions
-          </h2>
-
-          <!-- Icon row -->
-          <div class="flex items-center gap-4 mb-10">
-            <!-- Email -->
-            <a href="mailto:greenvalleymanjeri@gmail.com" aria-label="Email us"
-               class="contact-icon-btn w-11 h-11 rounded-xl bg-primary flex items-center justify-center">
-              <svg class="w-5 h-5 text-secondary" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <rect x="2" y="4.5" width="16" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M2 7l8 5 8-5" stroke="currentColor" stroke-width="1.5"/>
-              </svg>
-            </a>
-            <!-- WhatsApp -->
-            <a href="https://wa.me/914832944429" aria-label="WhatsApp us"
-               class="contact-icon-btn w-11 h-11 rounded-xl bg-primary flex items-center justify-center">
-              <svg class="w-5 h-5 text-secondary" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <circle cx="10" cy="10" r="8" fill="#25D366" opacity="0.9"/>
-                <path d="M7 9.2c.2.9 1 1.8 1.8 2.1l.7-.7c.1-.1.4-.1.5 0l1 .8c.2.1.2.4 0 .5-.6.6-1.5.8-2.2.4A5 5 0 016.2 9.7c-.4-.7-.2-1.6.4-2.2.2-.1.4-.1.5 0l.8 1c.1.1.1.4 0 .5l-.9.2z" fill="white"/>
-              </svg>
-            </a>
-            <!-- Location -->
-            <a href="https://maps.google.com" target="_blank" rel="noopener" aria-label="Find us on map"
-               class="contact-icon-btn w-11 h-11 rounded-xl bg-primary flex items-center justify-center">
-              <svg class="w-5 h-5 text-secondary" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                <path d="M10 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M10 18s6.5-5.7 6.5-9.5a6.5 6.5 0 00-13 0C3.5 12.3 10 18 10 18z" stroke="currentColor" stroke-width="1.5"/>
-              </svg>
-            </a>
-          </div>
-
-          <!-- Address & contact details grid -->
-          <div class="grid sm:grid-cols-2 gap-8">
-            <div>
-              <p class="font-heading font-bold text-primary text-sm mb-3 tracking-tight">Address</p>
-              <address class="not-italic text-primary/55 font-body font-light text-sm leading-relaxed">
-                Green Valley Academy<br/>
-                Pulpatta P.O., Manjeri<br/>
-                Malappuram, Kerala<br/>
-                – 676123
-              </address>
-            </div>
-            <div>
-              <p class="font-heading font-bold text-primary text-sm mb-3 tracking-tight">Phone No</p>
-              <ul class="space-y-1.5 text-primary/55 font-body font-light text-sm">
-                <li><a href="tel:+914832944429" class="hover:text-primary transition-colors">+91 48329 44429</a></li>
-                <li><a href="tel:+914832969966" class="hover:text-primary transition-colors">+91 48329699 66</a></li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Email -->
-          <div class="mt-8">
-            <p class="font-heading font-bold text-primary text-sm mb-2 tracking-tight">Email</p>
-            <a href="mailto:greenvalleymanjeri@gmail.com"
-               class="text-primary/55 font-body font-light text-sm hover:text-primary transition-colors">
-              greenvalleymanjeri@gmail.com
-            </a>
-          </div>
-        </div>
-
-        <!-- ── RIGHT: Form card ── -->
-        <div class="c-fade" style="transition-delay:.15s;">
-          <div class="bg-primary rounded-2xl md:rounded-3xl p-7 md:p-9 shadow-2xl">
-            <form novalidate aria-label="Contact inquiry form" class="space-y-7">
-
-              <!-- Row: Name + Email -->
-              <div class="grid sm:grid-cols-2 gap-6">
-                <div>
-                  <label class="block text-white/40 font-body font-semibold text-[10px] tracking-widest uppercase mb-3" for="c-name">Full Name</label>
-                  <input id="c-name" type="text" placeholder="Your full name" autocomplete="name" class="c-input" required />
-                </div>
-                <div>
-                  <label class="block text-white/40 font-body font-semibold text-[10px] tracking-widest uppercase mb-3" for="c-email">Institutional Email</label>
-                  <input id="c-email" type="email" placeholder="you@institution.edu" autocomplete="email" class="c-input" required />
-                </div>
-              </div>
-
-              <!-- Inquiry subject -->
-              <div>
-                <label class="block text-white/40 font-body font-semibold text-[10px] tracking-widest uppercase mb-3" for="c-dept">Inquiry Subject</label>
-                <div class="relative">
-                  <select id="c-dept" class="c-select pr-6" required>
-                    <option value="" disabled selected>Select Department</option>
-                    <option>Admissions Office</option>
-                    <option>Academic Programmes</option>
-                    <option>Campus Life</option>
-                    <option>Faculty &amp; Staff</option>
-                    <option>Finance &amp; Fees</option>
-                    <option>General Enquiry</option>
-                  </select>
-                  <svg class="absolute right-1 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/35 pointer-events-none" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                    <path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </div>
-              </div>
-
-              <!-- Message -->
-              <div>
-                <label class="block text-white/40 font-body font-semibold text-[10px] tracking-widest uppercase mb-3" for="c-message">Message of Interest</label>
-                <textarea id="c-message" rows="4" placeholder="Write your message here…" class="c-textarea"></textarea>
-              </div>
-
-              <!-- Submit -->
-              <div class="pt-1">
-                <button type="submit"
-                  class="submit-btn bg-secondary text-primary font-heading font-black text-sm px-8 py-3.5 rounded-full shadow-lg tracking-wide">
-                  SUBMIT INQUIRY
-                </button>
-              </div>
-
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ══════════ FIND US / MAP ══════════ -->
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mt-20 md:mt-28 c-fade" style="transition-delay:.25s;">
-      <h2 class="font-heading font-black text-primary text-2xl sm:text-3xl md:text-4xl text-center tracking-tight mb-10">FIND US</h2>
-
-      <!-- Map container -->
-      <div class="relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-primary/10" style="height: clamp(280px, 45vh, 480px);">
-
-        <!-- Google Maps embed — Green Valley Academy Manjeri -->
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.0!2d76.1196!3d11.1171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba64f0000000001%3A0x0!2sGreen%20Valley%20Academy%2C%20Manjeri%2C%20Kerala!5e0!3m2!1sen!2sin!4v1"
-          width="100%" height="100%"
-          style="border:0; filter: saturate(0.9) contrast(1.05);"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Green Valley Academy location on Google Maps"
-          aria-label="Map showing Green Valley Academy, Manjeri, Kerala">
-        </iframe>
-
-        <!-- Fallback overlay shown only if iframe fails — hidden by default -->
-        <div class="absolute inset-0 pointer-events-none flex flex-col items-center justify-center bg-primary/5" id="map-fallback" style="display:none;">
-          <!-- SVG map placeholder -->
-          <svg viewBox="0 0 700 400" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <rect width="700" height="400" fill="#e8f0e8"/>
-            <!-- Grid roads -->
-            <rect x="0" y="185" width="700" height="14" fill="#fff" opacity="0.85"/>
-            <rect x="0" y="125" width="700" height="8"  fill="#fff" opacity="0.6"/>
-            <rect x="0" y="260" width="700" height="8"  fill="#fff" opacity="0.6"/>
-            <rect x="0" y="310" width="700" height="5"  fill="#fff" opacity="0.4"/>
-            <rect x="320" y="0"   width="14" height="400" fill="#fff" opacity="0.85"/>
-            <rect x="180" y="0"   width="8"  height="400" fill="#fff" opacity="0.6"/>
-            <rect x="490" y="0"   width="8"  height="400" fill="#fff" opacity="0.6"/>
-            <rect x="560" y="0"   width="5"  height="400" fill="#fff" opacity="0.4"/>
-            <!-- Blocks -->
-            <rect x="20"  y="140" width="148" height="35" rx="3" fill="#c8d8c8" opacity="0.7"/>
-            <rect x="20"  y="200" width="148" height="50" rx="3" fill="#d0d8c0" opacity="0.7"/>
-            <rect x="20"  y="270" width="148" height="30" rx="3" fill="#c8d8c8" opacity="0.6"/>
-            <rect x="345" y="140" width="130" height="35" rx="3" fill="#c8d8c8" opacity="0.7"/>
-            <rect x="345" y="200" width="130" height="50" rx="3" fill="#d0d8c0" opacity="0.7"/>
-            <rect x="345" y="270" width="130" height="40" rx="3" fill="#c8d8c8" opacity="0.6"/>
-            <rect x="500" y="140" width="180" height="35" rx="3" fill="#c8d8c8" opacity="0.6"/>
-            <rect x="500" y="200" width="180" height="60" rx="3" fill="#d0d8c0" opacity="0.6"/>
-            <!-- Green park -->
-            <ellipse cx="250" cy="320" rx="80" ry="50" fill="#88bb88" opacity="0.5"/>
-            <ellipse cx="600" cy="85"  rx="65" ry="40" fill="#88bb88" opacity="0.45"/>
-            <!-- Map pin -->
-            <circle cx="327" cy="192" r="18" fill="#00301C" opacity="0.9"/>
-            <circle cx="327" cy="192" r="10" fill="white" opacity="0.9"/>
-            <circle cx="327" cy="192" r="5"  fill="#D1FB5F"/>
-            <line x1="327" y1="210" x2="327" y2="228" stroke="#00301C" stroke-width="3" stroke-linecap="round"/>
-            <!-- Road labels -->
-            <text x="180" y="180" text-anchor="middle" fill="#6a8a6a" font-size="8" font-family="Poppins" opacity="0.6">MAIN ROAD</text>
-            <text x="327" y="165" text-anchor="middle" fill="#6a8a6a" font-size="7" font-family="Poppins" opacity="0.6" transform="rotate(-90,327,165)">GREEN VALLEY RD</text>
-            <!-- Label -->
-            <rect x="255" y="228" width="145" height="32" rx="6" fill="#00301C" opacity="0.92"/>
-            <text x="327" y="248" text-anchor="middle" fill="#D1FB5F" font-size="9" font-family="Roboto" font-weight="900">GREEN VALLEY ACADEMY</text>
-            <text x="327" y="258" text-anchor="middle" fill="white" font-size="7" font-family="Poppins" opacity="0.6">Manjeri, Malappuram, Kerala</text>
-            <!-- Shimmer overlay -->
-            <rect width="700" height="400" fill="white" class="map-shimmer" opacity="0"/>
+      /* ── Map placeholder pulse ── */
+      @keyframes mapShimmer {
+        0%,
+        100% {
+          opacity: 0.06;
+        }
+        50% {
+          opacity: 0.12;
+        }
+      }
+      .map-shimmer {
+        animation: mapShimmer 2.5s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-primary antialiased">
+    <!-- ══════════ NAVBAR ══════════ -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-8 pt-4 flex items-start justify-between gap-4"
+    >
+      <a
+        href="./index.html"
+        class="logo-card flex items-center gap-2.5 px-4 py-3 rounded-2xl shadow-lg flex-shrink-0"
+        aria-label="GreenValley Academy Home"
+      >
+        <div class="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
+          <svg
+            viewBox="0 0 48 48"
+            fill="none"
+            class="w-full h-full"
+            aria-hidden="true"
+          >
+            <circle cx="24" cy="24" r="22" fill="#00301C" opacity="0.08" />
+            <path
+              d="M24 6C18 6 12 11 12 18c0 5 3 9 8 13l4 4 4-4c5-4 8-8 8-13 0-7-6-12-12-12z"
+              fill="#00301C"
+            />
+            <path
+              d="M24 6C20 6 16 9 16 14c0 3 1.5 5.5 4 7.5l4 3.5 4-3.5C30.5 19.5 32 17 32 14c0-5-4-8-8-8z"
+              fill="#D1FB5F"
+              opacity="0.6"
+            />
+            <circle cx="24" cy="38" r="2.5" fill="#00301C" opacity="0.4" />
+            <rect
+              x="23"
+              y="32"
+              width="2"
+              height="8"
+              rx="1"
+              fill="#00301C"
+              opacity="0.3"
+            />
           </svg>
         </div>
-
-        <!-- Pin overlay on top of iframe for branding -->
-        <div class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg pointer-events-none border border-primary/10">
-          <p class="font-heading font-bold text-primary text-xs mb-0.5">Green Valley Academy</p>
-          <p class="text-primary/50 font-body font-light text-[10px]">Pulpatta P.O., Manjeri, Kerala – 676123</p>
+        <div class="leading-tight">
+          <p
+            class="font-heading font-black text-primary text-sm sm:text-base leading-none tracking-tight"
+          >
+            GREENVALLEY
+          </p>
+          <p
+            class="font-heading font-black text-primary text-sm sm:text-base leading-none tracking-tight"
+          >
+            ACADEMY
+          </p>
+          <p
+            class="text-primary/40 text-[9px] font-body font-medium tracking-widest uppercase mt-0.5"
+          >
+            Manjeri, Kerala
+          </p>
         </div>
+      </a>
 
-      </div>
+      <nav
+        class="nav-pill hidden md:flex items-center gap-1 px-4 py-3 rounded-2xl"
+        aria-label="Main navigation"
+      >
+        <a
+          href="./index.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >HOME</a
+        >
+        <a
+          href="./about.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >ABOUT US</a
+        >
+        <a
+          href="#"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >PROGRAMMES</a
+        >
+        <a
+          href="#"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >ACTIVITIES</a
+        >
+        <a
+          href="./application.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >ADMISSION</a
+        >
+        <a
+          href="#"
+          class="nav-link active text-white font-body font-semibold text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >WOMEN'S ACADEMY</a
+        >
+      </nav>
+
+      <button
+        id="mob-toggle"
+        class="nav-pill md:hidden flex flex-col gap-1.5 p-3 rounded-xl mt-1"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span class="block w-5 h-0.5 bg-white rounded" id="mb1"></span>
+        <span class="block w-5 h-0.5 bg-white rounded" id="mb2"></span>
+        <span
+          class="block w-3.5 h-0.5 bg-white rounded self-end"
+          id="mb3"
+        ></span>
+      </button>
+    </header>
+
+    <div
+      id="mob-menu"
+      class="fixed top-0 left-0 right-0 z-40 bg-primary/97 backdrop-blur-md pt-20 pb-8 px-6 md:hidden"
+    >
+      <nav class="flex flex-col gap-1">
+        <a
+          href="./index.html"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >HOME</a
+        >
+        <a
+          href="application.html"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >ABOUT US</a
+        >
+        <a
+          href="#"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >PROGRAMMES</a
+        >
+        <a
+          href="#"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >ACTIVITIES</a
+        >
+        <a
+          href="./application.html"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >ADMISSION</a
+        >
+        <a href="#" class="text-secondary font-heading font-bold text-sm py-3"
+          >WOMEN'S ACADEMY</a
+        >
+      </nav>
     </div>
-  </main>
 
-  <!-- ══════════ WAVE + FOOTER ══════════ -->
-  <div class="wave-divider mt-16 md:mt-24">
-    <svg viewBox="0 0 1440 56" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" class="w-full h-10 md:h-14" aria-hidden="true">
-      <path d="M0,32 C240,60 480,0 720,32 C960,60 1200,0 1440,32 L1440,56 L0,56 Z" fill="#00301C"/>
-    </svg>
-  </div>
+    <!-- ══════════ HERO ══════════ -->
+    <section
+      class="relative w-full min-h-[48vh] md:min-h-[55vh] flex items-center justify-center overflow-hidden"
+      aria-label="Contact Us Hero"
+    >
+      <!-- Campus background illustration -->
+      <div class="absolute inset-0">
+        <!-- Replace with your own image -->
+        <img
+          src="assets/image/Group 18.png"
+          alt="Green Valley Academy Campus"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-primary/72"></div>
+      <!-- Hero text -->
+      <div class="relative text-center px-5 pt-24 pb-12">
+        <h1
+          class="font-heading font-black text-white text-4xl sm:text-5xl md:text-6xl tracking-tight mb-5"
+        >
+          CONTACT US
+        </h1>
+        <p
+          class="text-white/55 font-body font-light text-sm sm:text-base max-w-xl mx-auto leading-relaxed"
+        >
+          Contrary to popular belief, Lorem Ipsum is not simply random text. It
+          has roots in a piece of classical Latin literature from 45 BC, making
+          it over 2000 years old. Richard McClintock, a Latin professor at
+          Hampden-Sydney College in Virginia, looked up one of the more obscure
+          Latin words.
+        </p>
+      </div>
+    </section>
 
-  <footer class="bg-primary pt-14 pb-0" aria-label="Site footer">
-    <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 pb-14 border-b border-white/10">
+    <!-- ══════════ CONTACT MAIN ══════════ -->
+    <main class="bg-white py-16 md:py-24">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
+        <div class="grid md:grid-cols-2 gap-10 xl:gap-16 items-start">
+          <!-- ── LEFT: Info ── -->
+          <div class="c-fade">
+            <h2
+              class="font-heading font-black text-primary text-3xl sm:text-4xl md:text-[2.6rem] leading-[1.1] tracking-tight mb-8"
+            >
+              We Are Always Ready<br />
+              To Help You And<br />
+              Answer your<br />
+              Questions
+            </h2>
 
-        <!-- Col 1 -->
-        <div>
-          <div class="flex items-center gap-2.5 mb-5">
-            <span class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
-              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8 2 4 5 4 10c0 4 3 7 8 12 5-5 8-8 8-12 0-5-4-8-8-8z" fill="#00301C"/></svg>
-            </span>
-            <span class="font-heading font-black text-white text-base tracking-tight">GREEN<span class="text-secondary">VALLEY</span></span>
+            <!-- Icon row -->
+            <div class="flex items-center gap-4 mb-10">
+              <!-- Email -->
+              <a
+                href="mailto:greenvalleymanjeri@gmail.com"
+                aria-label="Email us"
+                class="contact-icon-btn w-11 h-11 rounded-xl bg-primary flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-secondary"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="2"
+                    y="4.5"
+                    width="16"
+                    height="11"
+                    rx="2"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M2 7l8 5 8-5"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </a>
+              <!-- WhatsApp -->
+              <a
+                href="https://wa.me/914832944429"
+                aria-label="WhatsApp us"
+                class="contact-icon-btn w-11 h-11 rounded-xl bg-primary flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-secondary"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <circle cx="10" cy="10" r="8" fill="#25D366" opacity="0.9" />
+                  <path
+                    d="M7 9.2c.2.9 1 1.8 1.8 2.1l.7-.7c.1-.1.4-.1.5 0l1 .8c.2.1.2.4 0 .5-.6.6-1.5.8-2.2.4A5 5 0 016.2 9.7c-.4-.7-.2-1.6.4-2.2.2-.1.4-.1.5 0l.8 1c.1.1.1.4 0 .5l-.9.2z"
+                    fill="white"
+                  />
+                </svg>
+              </a>
+              <!-- Location -->
+              <a
+                href="https://maps.google.com"
+                target="_blank"
+                rel="noopener"
+                aria-label="Find us on map"
+                class="contact-icon-btn w-11 h-11 rounded-xl bg-primary flex items-center justify-center"
+              >
+                <svg
+                  class="w-5 h-5 text-secondary"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M10 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M10 18s6.5-5.7 6.5-9.5a6.5 6.5 0 00-13 0C3.5 12.3 10 18 10 18z"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Address & contact details grid -->
+            <div class="grid sm:grid-cols-2 gap-8">
+              <div>
+                <p
+                  class="font-heading font-bold text-primary text-sm mb-3 tracking-tight"
+                >
+                  Address
+                </p>
+                <address
+                  class="not-italic text-primary/55 font-body font-light text-sm leading-relaxed"
+                >
+                  Green Valley Academy<br />
+                  Pulpatta P.O., Manjeri<br />
+                  Malappuram, Kerala<br />
+                  – 676123
+                </address>
+              </div>
+              <div>
+                <p
+                  class="font-heading font-bold text-primary text-sm mb-3 tracking-tight"
+                >
+                  Phone No
+                </p>
+                <ul
+                  class="space-y-1.5 text-primary/55 font-body font-light text-sm"
+                >
+                  <li>
+                    <a
+                      href="tel:+914832944429"
+                      class="hover:text-primary transition-colors"
+                      >+91 48329 44429</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="tel:+914832969966"
+                      class="hover:text-primary transition-colors"
+                      >+91 48329699 66</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mt-8">
+              <p
+                class="font-heading font-bold text-primary text-sm mb-2 tracking-tight"
+              >
+                Email
+              </p>
+              <a
+                href="mailto:greenvalleymanjeri@gmail.com"
+                class="text-primary/55 font-body font-light text-sm hover:text-primary transition-colors"
+              >
+                greenvalleymanjeri@gmail.com
+              </a>
+            </div>
           </div>
-          <ul class="space-y-3.5 text-white/50 text-sm font-body font-light">
-            <li class="flex items-start gap-2.5">
-              <svg class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M8 8.5a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" stroke-width="1.4"/><path d="M8 14s5-4 5-7a5 5 0 00-10 0c0 3 5 7 5 7z" stroke="currentColor" stroke-width="1.4"/></svg>
-              <span>Green Valley Academy, Pulpatta P.O., Manjeri, Malappuram, Kerala – 676123</span>
-            </li>
-            <li class="flex items-start gap-2.5">
-              <svg class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><path d="M13 10.7l-2-1a.8.8 0 00-.9.2l-.9 1a7.4 7.4 0 01-3.3-3.3l1-.9a.8.8 0 00.2-.9l-1-2A.8.8 0 005.4 4H4a.8.8 0 00-.8.8A9.6 9.6 0 0012.8 14a.8.8 0 00.8-.8v-1.7a.8.8 0 00-.6-.8z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-              <span>+91 48329 44429 | +91 48329699 66</span>
-            </li>
-            <li class="flex items-start gap-2.5">
-              <svg class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5" viewBox="0 0 16 16" fill="none"><rect x="2" y="4" width="12" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M2 6l6 4 6-4" stroke="currentColor" stroke-width="1.4"/></svg>
-              <a href="mailto:greenvalleymanjeri@gmail.com" class="hover:text-secondary transition-colors break-all">greenvalleymanjeri@gmail.com</a>
-            </li>
-          </ul>
-        </div>
 
-        <!-- Col 2 -->
-        <div>
-          <h4 class="font-heading font-bold text-white text-base mb-5 tracking-tight">Courses</h4>
-          <ul class="space-y-2.5">
-            <li><a href="#" class="foot-link text-white/50 text-sm font-body font-light">Computer Application</a></li>
-            <li><a href="#" class="foot-link text-white/50 text-sm font-body font-light">Graphic Designing</a></li>
-            <li><a href="#" class="foot-link text-white/50 text-sm font-body font-light">Electrical Technician</a></li>
-            <li><a href="#" class="foot-link text-white/50 text-sm font-body font-light">Account Executive</a></li>
-            <li><a href="#" class="foot-link text-white/50 text-sm font-body font-light">Arabic Translator</a></li>
-          </ul>
-        </div>
+          <!-- ── RIGHT: Form card ── -->
+          <div class="c-fade" style="transition-delay: 0.15s">
+            <div
+              class="bg-primary rounded-2xl md:rounded-3xl p-7 md:p-9 shadow-2xl"
+            >
+              <form
+                novalidate
+                aria-label="Contact inquiry form"
+                class="space-y-7"
+              >
+                <!-- Row: Name + Email -->
+                <div class="grid sm:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      class="block text-white/40 font-body font-semibold text-[10px] tracking-widest uppercase mb-3"
+                      for="c-name"
+                      >Full Name</label
+                    >
+                    <input
+                      id="c-name"
+                      type="text"
+                      placeholder="Your full name"
+                      autocomplete="name"
+                      class="c-input"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-white/40 font-body font-semibold text-[10px] tracking-widest uppercase mb-3"
+                      for="c-email"
+                      >Institutional Email</label
+                    >
+                    <input
+                      id="c-email"
+                      type="email"
+                      placeholder="you@institution.edu"
+                      autocomplete="email"
+                      class="c-input"
+                      required
+                    />
+                  </div>
+                </div>
 
-        <!-- Col 3 -->
-        <div>
-          <h4 class="font-heading font-bold text-white text-base mb-5 tracking-tight">Quick Links</h4>
-          <ul class="space-y-2.5">
-            <li><a href="#" class="foot-link text-white/50 text-sm font-body font-light">Faculty Profiles</a></li>
-            <li><a href="admission-form.html" class="foot-link text-white/50 text-sm font-body font-light">Admission Form</a></li>
-            <li><a href="#" class="foot-link text-white/50 text-sm font-body font-light">Campus Tour</a></li>
-            <li><a href="#" class="foot-link text-white/50 text-sm font-body font-light">News &amp; Archive</a></li>
-            <li><a href="contact.html" class="foot-link text-secondary text-sm font-body font-medium">Contact Us</a></li>
-          </ul>
-        </div>
+                <!-- Inquiry subject -->
+                <div>
+                  <label
+                    class="block text-white/40 font-body font-semibold text-[10px] tracking-widest uppercase mb-3"
+                    for="c-dept"
+                    >Inquiry Subject</label
+                  >
+                  <div class="relative">
+                    <select id="c-dept" class="c-select pr-6" required>
+                      <option value="" disabled selected>
+                        Select Department
+                      </option>
+                      <option>Admissions Office</option>
+                      <option>Academic Programmes</option>
+                      <option>Campus Life</option>
+                      <option>Faculty &amp; Staff</option>
+                      <option>Finance &amp; Fees</option>
+                      <option>General Enquiry</option>
+                    </select>
+                    <svg
+                      class="absolute right-1 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/35 pointer-events-none"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M3 5l4 4 4-4"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
 
-        <!-- Col 4 -->
-        <div>
-          <h4 class="font-heading font-bold text-white text-base mb-5 tracking-tight">Connect</h4>
-          <ul class="space-y-3.5">
-            <li>
-              <a href="#" class="foot-social-link text-white/50 text-sm font-body font-light">
-                <span class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
-                  <svg class="w-3.5 h-3.5 text-secondary" viewBox="0 0 16 16" fill="currentColor"><path d="M8 1.6a6.4 6.4 0 100 12.8A6.4 6.4 0 008 1.6zM5.5 5.5h1.8V4.7c0-1.2.6-1.8 2-1.8h1.3v1.8H9.4c-.5 0-.5.2-.5.5V5.5h1.7l-.2 2H8.9V13H7V7.5H5.8l.2-2z"/></svg>
-                </span>Facebook
-              </a>
-            </li>
-            <li>
-              <a href="#" class="foot-social-link text-white/50 text-sm font-body font-light">
-                <span class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
-                  <svg class="w-3.5 h-3.5 text-secondary" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="3" width="10" height="10" rx="3"/><circle cx="8" cy="8" r="2.5"/><circle cx="11.2" cy="4.8" r="0.7" fill="currentColor" stroke="none"/></svg>
-                </span>Instagram
-              </a>
-            </li>
-            <li>
-              <a href="#" class="foot-social-link text-white/50 text-sm font-body font-light">
-                <span class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
-                  <svg class="w-3.5 h-3.5 text-secondary" viewBox="0 0 16 16" fill="currentColor"><path d="M15 3.5a6 6 0 01-1.65.46 2.9 2.9 0 001.26-1.6 5.8 5.8 0 01-1.83.7A2.9 2.9 0 008 5.57a8.2 8.2 0 01-5.96-3.02 2.9 2.9 0 00.9 3.86 2.87 2.87 0 01-1.31-.36v.04a2.9 2.9 0 002.32 2.84 2.9 2.9 0 01-1.3.05 2.9 2.9 0 002.7 2.01A5.82 5.82 0 011 12.4a8.2 8.2 0 004.44 1.3c5.33 0 8.25-4.42 8.25-8.25l-.01-.38A5.9 5.9 0 0015 3.5z"/></svg>
-                </span>Twitter
-              </a>
-            </li>
-            <li>
-              <a href="#" class="foot-social-link text-white/50 text-sm font-body font-light">
-                <span class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0">
-                  <svg class="w-3.5 h-3.5 text-secondary" viewBox="0 0 16 16" fill="currentColor"><circle cx="10" cy="10" r="4.5" fill="#25D366"/><path d="M8.5 9.2c.2.9.9 1.5 1.7 1.7l.6-.6c.1-.1.3-.1.5 0l.9.7c.1.1.1.3 0 .5-.5.5-1.3.7-1.9.4A4 4 0 017.9 9.5c-.4-.6-.2-1.4.4-1.9.1-.1.3-.1.5 0l.7.9c.1.1.1.3 0 .5l-.9.2z" fill="white"/></svg>
-                </span>WhatsApp
-              </a>
-            </li>
-          </ul>
-        </div>
+                <!-- Message -->
+                <div>
+                  <label
+                    class="block text-white/40 font-body font-semibold text-[10px] tracking-widest uppercase mb-3"
+                    for="c-message"
+                    >Message of Interest</label
+                  >
+                  <textarea
+                    id="c-message"
+                    rows="4"
+                    placeholder="Write your message here…"
+                    class="c-textarea"
+                  ></textarea>
+                </div>
 
+                <!-- Submit -->
+                <div class="pt-1">
+                  <button
+                    type="submit"
+                    class="submit-btn bg-secondary text-primary font-heading font-black text-sm px-8 py-3.5 rounded-full shadow-lg tracking-wide"
+                  >
+                    SUBMIT INQUIRY
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 py-5 text-white/30 text-xs font-body font-light">
-        <p>© COPYRIGHT 2024 GREEN VALLEY ACADEMY. ALL RIGHTS RESERVED.</p>
-        <div class="flex gap-5">
-          <a href="#" class="hover:text-secondary transition-colors tracking-wide">PRIVACY POLICY</a>
-          <a href="#" class="hover:text-secondary transition-colors tracking-wide">TERMS OF SERVICE</a>
+      <!-- ══════════ FIND US / MAP ══════════ -->
+      <div
+        class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12 mt-20 md:mt-28 c-fade"
+        style="transition-delay: 0.25s"
+      >
+        <h2
+          class="font-heading font-black text-primary text-2xl sm:text-3xl md:text-4xl text-center tracking-tight mb-10"
+        >
+          FIND US
+        </h2>
+
+        <!-- Map container -->
+        <div
+          class="relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border border-primary/10"
+          style="height: clamp(280px, 45vh, 480px)"
+        >
+          <!-- Google Maps embed — Green Valley Academy Manjeri -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3915.0!2d76.1196!3d11.1171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba64f0000000001%3A0x0!2sGreen%20Valley%20Academy%2C%20Manjeri%2C%20Kerala!5e0!3m2!1sen!2sin!4v1"
+            width="100%"
+            height="100%"
+            style="border: 0; filter: saturate(0.9) contrast(1.05)"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Green Valley Academy location on Google Maps"
+            aria-label="Map showing Green Valley Academy, Manjeri, Kerala"
+          >
+          </iframe>
+
+          <!-- Fallback overlay shown only if iframe fails — hidden by default -->
+          <div
+            class="absolute inset-0 pointer-events-none flex flex-col items-center justify-center bg-primary/5"
+            id="map-fallback"
+            style="display: none"
+          >
+            <!-- SVG map placeholder -->
+            <svg
+              viewBox="0 0 700 400"
+              class="w-full h-full"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMidYMid slice"
+              aria-hidden="true"
+            >
+              <rect width="700" height="400" fill="#e8f0e8" />
+              <!-- Grid roads -->
+              <rect
+                x="0"
+                y="185"
+                width="700"
+                height="14"
+                fill="#fff"
+                opacity="0.85"
+              />
+              <rect
+                x="0"
+                y="125"
+                width="700"
+                height="8"
+                fill="#fff"
+                opacity="0.6"
+              />
+              <rect
+                x="0"
+                y="260"
+                width="700"
+                height="8"
+                fill="#fff"
+                opacity="0.6"
+              />
+              <rect
+                x="0"
+                y="310"
+                width="700"
+                height="5"
+                fill="#fff"
+                opacity="0.4"
+              />
+              <rect
+                x="320"
+                y="0"
+                width="14"
+                height="400"
+                fill="#fff"
+                opacity="0.85"
+              />
+              <rect
+                x="180"
+                y="0"
+                width="8"
+                height="400"
+                fill="#fff"
+                opacity="0.6"
+              />
+              <rect
+                x="490"
+                y="0"
+                width="8"
+                height="400"
+                fill="#fff"
+                opacity="0.6"
+              />
+              <rect
+                x="560"
+                y="0"
+                width="5"
+                height="400"
+                fill="#fff"
+                opacity="0.4"
+              />
+              <!-- Blocks -->
+              <rect
+                x="20"
+                y="140"
+                width="148"
+                height="35"
+                rx="3"
+                fill="#c8d8c8"
+                opacity="0.7"
+              />
+              <rect
+                x="20"
+                y="200"
+                width="148"
+                height="50"
+                rx="3"
+                fill="#d0d8c0"
+                opacity="0.7"
+              />
+              <rect
+                x="20"
+                y="270"
+                width="148"
+                height="30"
+                rx="3"
+                fill="#c8d8c8"
+                opacity="0.6"
+              />
+              <rect
+                x="345"
+                y="140"
+                width="130"
+                height="35"
+                rx="3"
+                fill="#c8d8c8"
+                opacity="0.7"
+              />
+              <rect
+                x="345"
+                y="200"
+                width="130"
+                height="50"
+                rx="3"
+                fill="#d0d8c0"
+                opacity="0.7"
+              />
+              <rect
+                x="345"
+                y="270"
+                width="130"
+                height="40"
+                rx="3"
+                fill="#c8d8c8"
+                opacity="0.6"
+              />
+              <rect
+                x="500"
+                y="140"
+                width="180"
+                height="35"
+                rx="3"
+                fill="#c8d8c8"
+                opacity="0.6"
+              />
+              <rect
+                x="500"
+                y="200"
+                width="180"
+                height="60"
+                rx="3"
+                fill="#d0d8c0"
+                opacity="0.6"
+              />
+              <!-- Green park -->
+              <ellipse
+                cx="250"
+                cy="320"
+                rx="80"
+                ry="50"
+                fill="#88bb88"
+                opacity="0.5"
+              />
+              <ellipse
+                cx="600"
+                cy="85"
+                rx="65"
+                ry="40"
+                fill="#88bb88"
+                opacity="0.45"
+              />
+              <!-- Map pin -->
+              <circle cx="327" cy="192" r="18" fill="#00301C" opacity="0.9" />
+              <circle cx="327" cy="192" r="10" fill="white" opacity="0.9" />
+              <circle cx="327" cy="192" r="5" fill="#D1FB5F" />
+              <line
+                x1="327"
+                y1="210"
+                x2="327"
+                y2="228"
+                stroke="#00301C"
+                stroke-width="3"
+                stroke-linecap="round"
+              />
+              <!-- Road labels -->
+              <text
+                x="180"
+                y="180"
+                text-anchor="middle"
+                fill="#6a8a6a"
+                font-size="8"
+                font-family="Poppins"
+                opacity="0.6"
+              >
+                MAIN ROAD
+              </text>
+              <text
+                x="327"
+                y="165"
+                text-anchor="middle"
+                fill="#6a8a6a"
+                font-size="7"
+                font-family="Poppins"
+                opacity="0.6"
+                transform="rotate(-90,327,165)"
+              >
+                GREEN VALLEY RD
+              </text>
+              <!-- Label -->
+              <rect
+                x="255"
+                y="228"
+                width="145"
+                height="32"
+                rx="6"
+                fill="#00301C"
+                opacity="0.92"
+              />
+              <text
+                x="327"
+                y="248"
+                text-anchor="middle"
+                fill="#D1FB5F"
+                font-size="9"
+                font-family="Roboto"
+                font-weight="900"
+              >
+                GREEN VALLEY ACADEMY
+              </text>
+              <text
+                x="327"
+                y="258"
+                text-anchor="middle"
+                fill="white"
+                font-size="7"
+                font-family="Poppins"
+                opacity="0.6"
+              >
+                Manjeri, Malappuram, Kerala
+              </text>
+              <!-- Shimmer overlay -->
+              <rect
+                width="700"
+                height="400"
+                fill="white"
+                class="map-shimmer"
+                opacity="0"
+              />
+            </svg>
+          </div>
+
+          <!-- Pin overlay on top of iframe for branding -->
+          <div
+            class="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg pointer-events-none border border-primary/10"
+          >
+            <p class="font-heading font-bold text-primary text-xs mb-0.5">
+              Green Valley Academy
+            </p>
+            <p class="text-primary/50 font-body font-light text-[10px]">
+              Pulpatta P.O., Manjeri, Kerala – 676123
+            </p>
+          </div>
         </div>
       </div>
+    </main>
+
+    <!-- ══════════ WAVE + FOOTER ══════════ -->
+    <div class="wave-divider mt-16 md:mt-24">
+      <svg
+        viewBox="0 0 1440 56"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        class="w-full h-10 md:h-14"
+        aria-hidden="true"
+      >
+        <path
+          d="M0,32 C240,60 480,0 720,32 C960,60 1200,0 1440,32 L1440,56 L0,56 Z"
+          fill="#00301C"
+        />
+      </svg>
     </div>
-  </footer>
 
-  <script>
-    // ── Mobile nav ──
-    var mT = document.getElementById('mob-toggle');
-    var mM = document.getElementById('mob-menu');
-    var mb1 = document.getElementById('mb1'), mb2 = document.getElementById('mb2'), mb3 = document.getElementById('mb3');
-    var mOpen = false;
-    mT.addEventListener('click', function() {
-      mOpen = !mOpen;
-      mM.classList.toggle('open', mOpen);
-      mT.setAttribute('aria-expanded', mOpen);
-      mb1.style.transform = mOpen ? 'rotate(45deg) translate(4px,5px)' : '';
-      mb2.style.opacity   = mOpen ? '0' : '1';
-      mb3.style.transform = mOpen ? 'rotate(-45deg) translate(4px,-5px)' : '';
-      mb3.style.width     = mOpen ? '20px' : '';
-    });
-    mM.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() {
-        mOpen = false; mM.classList.remove('open');
-        mb1.style.transform = mb2.style.opacity = mb3.style.transform = '';
-        mb3.style.width = '';
+    <footer class="bg-primary pt-14 pb-0" aria-label="Site footer">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 pb-14 border-b border-white/10"
+        >
+          <!-- Col 1 -->
+          <div>
+            <div class="flex items-center gap-2.5 mb-5">
+              <span
+                class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 2C8 2 4 5 4 10c0 4 3 7 8 12 5-5 8-8 8-12 0-5-4-8-8-8z"
+                    fill="#00301C"
+                  />
+                </svg>
+              </span>
+              <span
+                class="font-heading font-black text-white text-base tracking-tight"
+                >GREEN<span class="text-secondary">VALLEY</span></span
+              >
+            </div>
+            <ul class="space-y-3.5 text-white/50 text-sm font-body font-light">
+              <li class="flex items-start gap-2.5">
+                <svg
+                  class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M8 8.5a2 2 0 100-4 2 2 0 000 4z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M8 14s5-4 5-7a5 5 0 00-10 0c0 3 5 7 5 7z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                </svg>
+                <span
+                  >Green Valley Academy, Pulpatta P.O., Manjeri, Malappuram,
+                  Kerala – 676123</span
+                >
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg
+                  class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M13 10.7l-2-1a.8.8 0 00-.9.2l-.9 1a7.4 7.4 0 01-3.3-3.3l1-.9a.8.8 0 00.2-.9l-1-2A.8.8 0 005.4 4H4a.8.8 0 00-.8.8A9.6 9.6 0 0012.8 14a.8.8 0 00.8-.8v-1.7a.8.8 0 00-.6-.8z"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <span>+91 48329 44429 | +91 48329699 66</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg
+                  class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <rect
+                    x="2"
+                    y="4"
+                    width="12"
+                    height="9"
+                    rx="1.5"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M2 6l6 4 6-4"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                </svg>
+                <a
+                  href="mailto:greenvalleymanjeri@gmail.com"
+                  class="hover:text-secondary transition-colors break-all"
+                  >greenvalleymanjeri@gmail.com</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 2 -->
+          <div>
+            <h4
+              class="font-heading font-bold text-white text-base mb-5 tracking-tight"
+            >
+              Courses
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Computer Application</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Graphic Designing</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Electrical Technician</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Account Executive</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Arabic Translator</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 3 -->
+          <div>
+            <h4
+              class="font-heading font-bold text-white text-base mb-5 tracking-tight"
+            >
+              Quick Links
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Faculty Profiles</a
+                >
+              </li>
+              <li>
+                <a
+                  href="admission-form.html"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Admission Form</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Campus Tour</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >News &amp; Archive</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contact.html"
+                  class="foot-link text-secondary text-sm font-body font-medium"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Col 4 -->
+          <div>
+            <h4
+              class="font-heading font-bold text-white text-base mb-5 tracking-tight"
+            >
+              Connect
+            </h4>
+            <ul class="space-y-3.5">
+              <li>
+                <a
+                  href="#"
+                  class="foot-social-link text-white/50 text-sm font-body font-light"
+                >
+                  <span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M8 1.6a6.4 6.4 0 100 12.8A6.4 6.4 0 008 1.6zM5.5 5.5h1.8V4.7c0-1.2.6-1.8 2-1.8h1.3v1.8H9.4c-.5 0-.5.2-.5.5V5.5h1.7l-.2 2H8.9V13H7V7.5H5.8l.2-2z"
+                      />
+                    </svg> </span
+                  >Facebook
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-social-link text-white/50 text-sm font-body font-light"
+                >
+                  <span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                    >
+                      <rect x="3" y="3" width="10" height="10" rx="3" />
+                      <circle cx="8" cy="8" r="2.5" />
+                      <circle
+                        cx="11.2"
+                        cy="4.8"
+                        r="0.7"
+                        fill="currentColor"
+                        stroke="none"
+                      />
+                    </svg> </span
+                  >Instagram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-social-link text-white/50 text-sm font-body font-light"
+                >
+                  <span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M15 3.5a6 6 0 01-1.65.46 2.9 2.9 0 001.26-1.6 5.8 5.8 0 01-1.83.7A2.9 2.9 0 008 5.57a8.2 8.2 0 01-5.96-3.02 2.9 2.9 0 00.9 3.86 2.87 2.87 0 01-1.31-.36v.04a2.9 2.9 0 002.32 2.84 2.9 2.9 0 01-1.3.05 2.9 2.9 0 002.7 2.01A5.82 5.82 0 011 12.4a8.2 8.2 0 004.44 1.3c5.33 0 8.25-4.42 8.25-8.25l-.01-.38A5.9 5.9 0 0015 3.5z"
+                      />
+                    </svg> </span
+                  >Twitter
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-social-link text-white/50 text-sm font-body font-light"
+                >
+                  <span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                  >
+                    <svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
+                      <circle cx="10" cy="10" r="4.5" fill="#25D366" />
+                      <path
+                        d="M8.5 9.2c.2.9.9 1.5 1.7 1.7l.6-.6c.1-.1.3-.1.5 0l.9.7c.1.1.1.3 0 .5-.5.5-1.3.7-1.9.4A4 4 0 017.9 9.5c-.4-.6-.2-1.4.4-1.9.1-.1.3-.1.5 0l.7.9c.1.1.1.3 0 .5l-.9.2z"
+                        fill="white"
+                      />
+                    </svg> </span
+                  >WhatsApp
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between gap-3 py-5 text-white/30 text-xs font-body font-light"
+        >
+          <p>© COPYRIGHT 2024 GREEN VALLEY ACADEMY. ALL RIGHTS RESERVED.</p>
+          <div class="flex gap-5">
+            <a
+              href="#"
+              class="hover:text-secondary transition-colors tracking-wide"
+              >PRIVACY POLICY</a
+            >
+            <a
+              href="#"
+              class="hover:text-secondary transition-colors tracking-wide"
+              >TERMS OF SERVICE</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ── Mobile nav ──
+      var mT = document.getElementById("mob-toggle");
+      var mM = document.getElementById("mob-menu");
+      var mb1 = document.getElementById("mb1"),
+        mb2 = document.getElementById("mb2"),
+        mb3 = document.getElementById("mb3");
+      var mOpen = false;
+      mT.addEventListener("click", function () {
+        mOpen = !mOpen;
+        mM.classList.toggle("open", mOpen);
+        mT.setAttribute("aria-expanded", mOpen);
+        mb1.style.transform = mOpen ? "rotate(45deg) translate(4px,5px)" : "";
+        mb2.style.opacity = mOpen ? "0" : "1";
+        mb3.style.transform = mOpen ? "rotate(-45deg) translate(4px,-5px)" : "";
+        mb3.style.width = mOpen ? "20px" : "";
       });
-    });
-
-    // ── Scroll reveal ──
-    var fadeEls = document.querySelectorAll('.c-fade');
-    var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }
+      mM.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          mOpen = false;
+          mM.classList.remove("open");
+          mb1.style.transform = mb2.style.opacity = mb3.style.transform = "";
+          mb3.style.width = "";
+        });
       });
-    }, { threshold: 0.08 });
-    fadeEls.forEach(function(el) { obs.observe(el); });
 
-    // ── Form submit ──
-    document.querySelector('form').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var btn = this.querySelector('button[type=submit]');
-      btn.textContent = '✓ INQUIRY SENT';
-      btn.classList.add('opacity-75');
-      btn.disabled = true;
-    });
-
-    // ── Show SVG fallback if iframe fails ──
-    var iframe = document.querySelector('iframe[title*="Map"]');
-    if (iframe) {
-      iframe.addEventListener('error', function() {
-        document.getElementById('map-fallback').style.display = 'flex';
-        iframe.style.display = 'none';
+      // ── Scroll reveal ──
+      var fadeEls = document.querySelectorAll(".c-fade");
+      var obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("vis");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      fadeEls.forEach(function (el) {
+        obs.observe(el);
       });
-    }
-  </script>
 
-</body>
+      // ── Form submit ──
+      document.querySelector("form").addEventListener("submit", function (e) {
+        e.preventDefault();
+        var btn = this.querySelector("button[type=submit]");
+        btn.textContent = "✓ INQUIRY SENT";
+        btn.classList.add("opacity-75");
+        btn.disabled = true;
+      });
+
+      // ── Show SVG fallback if iframe fails ──
+      var iframe = document.querySelector('iframe[title*="Map"]');
+      if (iframe) {
+        iframe.addEventListener("error", function () {
+          document.getElementById("map-fallback").style.display = "flex";
+          iframe.style.display = "none";
+        });
+      }
+    </script>
+  </body>
 </html>
