@@ -1,0 +1,1921 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us — GreenValley Academy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#00301C", secondary: "#D1FB5F" },
+            fontFamily: {
+              heading: ["Roboto", "sans-serif"],
+              body: ["Poppins", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Roboto", sans-serif;
+      }
+
+      /* Nav */
+      .logo-card {
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(8px);
+      }
+      .nav-pill {
+        background: rgba(20, 20, 20, 0.72);
+        backdrop-filter: blur(12px);
+      }
+      .nav-link {
+        position: relative;
+        padding-bottom: 4px;
+      }
+      .nav-link.active::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #d1fb5f;
+        border-radius: 2px;
+      }
+      #mob-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          opacity 0.3s ease;
+        opacity: 0;
+      }
+      #mob-menu.open {
+        max-height: 500px;
+        opacity: 1;
+      }
+
+      /* Scroll reveal */
+      .a-fade {
+        opacity: 0;
+        transform: translateY(36px);
+        transition:
+          opacity 0.68s ease,
+          transform 0.68s ease;
+      }
+      .a-fade.vis {
+        opacity: 1;
+        transform: none;
+      }
+      .a-left {
+        opacity: 0;
+        transform: translateX(-48px);
+        transition:
+          opacity 0.72s ease,
+          transform 0.72s ease;
+      }
+      .a-right {
+        opacity: 0;
+        transform: translateX(48px);
+        transition:
+          opacity 0.72s ease,
+          transform 0.72s ease;
+      }
+      .a-left.vis,
+      .a-right.vis {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* Image hover zoom */
+      .img-zoom {
+        overflow: hidden;
+      }
+      .img-zoom img,
+      .img-zoom .thumb {
+        transition: transform 0.5s ease;
+      }
+      .img-zoom:hover img,
+      .img-zoom:hover .thumb {
+        transform: scale(1.05);
+      }
+
+      /* Faculty card */
+      .fac-card {
+        transition: transform 0.3s ease;
+      }
+      .fac-card:hover {
+        transform: translateY(-6px);
+      }
+      .fac-avatar {
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease;
+      }
+      .fac-card:hover .fac-avatar {
+        transform: scale(1.08);
+        box-shadow: 0 12px 30px rgba(0, 48, 28, 0.22);
+      }
+
+      /* Video play */
+      .play-ring::before {
+        content: "";
+        position: absolute;
+        inset: -10px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.12);
+        animation: pulse-ring 2.4s ease-out infinite;
+      }
+      @keyframes pulse-ring {
+        0% {
+          transform: scale(0.85);
+          opacity: 0.7;
+        }
+        80% {
+          transform: scale(1.4);
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      /* Video modal */
+      #vid-modal {
+        transition: opacity 0.3s ease;
+      }
+      #vid-modal.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      /* Wave */
+      .wave-div {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+      }
+
+      /* Foot */
+      .foot-link {
+        transition:
+          color 0.2s ease,
+          padding-left 0.2s ease;
+      }
+      .foot-link:hover {
+        color: #d1fb5f;
+        padding-left: 4px;
+      }
+      .foot-sl {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition:
+          color 0.2s ease,
+          transform 0.2s ease;
+      }
+      .foot-sl:hover {
+        color: #d1fb5f;
+        transform: translateX(3px);
+      }
+
+      /* Layered image accent */
+      .layer-accent {
+        position: absolute;
+        width: 88%;
+        height: 88%;
+        border-radius: 1.5rem;
+        background: #d1fb5f;
+        bottom: -14px;
+        right: -14px;
+        z-index: 0;
+      }
+    </style>
+  </head>
+  <body class="bg-white text-primary antialiased">
+    <!-- ══════════ NAVBAR ══════════ -->
+    <header
+      class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 md:px-8 pt-4 flex items-start justify-between gap-4"
+    >
+      <a
+        href="hero-section.html"
+        class="logo-card flex items-center gap-2.5 px-4 py-3 rounded-2xl shadow-lg flex-shrink-0"
+        aria-label="Home"
+      >
+        <div class="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0">
+          <svg
+            viewBox="0 0 48 48"
+            fill="none"
+            class="w-full h-full"
+            aria-hidden="true"
+          >
+            <circle cx="24" cy="24" r="22" fill="#00301C" opacity=".08" />
+            <path
+              d="M24 6C18 6 12 11 12 18c0 5 3 9 8 13l4 4 4-4c5-4 8-8 8-13 0-7-6-12-12-12z"
+              fill="#00301C"
+            />
+            <path
+              d="M24 6C20 6 16 9 16 14c0 3 1.5 5.5 4 7.5l4 3.5 4-3.5C30.5 19.5 32 17 32 14c0-5-4-8-8-8z"
+              fill="#D1FB5F"
+              opacity=".6"
+            />
+            <circle cx="24" cy="38" r="2.5" fill="#00301C" opacity=".4" />
+            <rect
+              x="23"
+              y="32"
+              width="2"
+              height="8"
+              rx="1"
+              fill="#00301C"
+              opacity=".3"
+            />
+          </svg>
+        </div>
+        <div class="leading-tight">
+          <p
+            class="font-heading font-black text-primary text-sm sm:text-base leading-none tracking-tight"
+          >
+            GREENVALLEY
+          </p>
+          <p
+            class="font-heading font-black text-primary text-sm sm:text-base leading-none tracking-tight"
+          >
+            ACADEMY
+          </p>
+          <p
+            class="text-primary/40 text-[9px] font-body font-medium tracking-widest uppercase mt-0.5"
+          >
+            Manjeri, Kerala
+          </p>
+        </div>
+      </a>
+
+      <nav
+        class="nav-pill hidden md:flex items-center gap-1 px-4 py-3 rounded-2xl"
+        aria-label="Main navigation"
+      >
+        <a
+          href="./index.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >HOME</a
+        >
+        <a
+          href="./about.html"
+          class="nav-link active text-white font-body font-semibold text-xs lg:text-sm px-3 lg:px-4 py-1.5 whitespace-nowrap"
+          >ABOUT US</a
+        >
+        <a
+          href="./programs.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >PROGRAMMES</a
+        >
+        <a
+          href="./activities.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >ACTIVITIES</a
+        >
+        <a
+          href="./application.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >ADMISSION</a
+        >
+        <a
+          href="./womens-academy.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >WOMEN'S ACADEMY</a
+        >
+        <a
+          href="./contact.html"
+          class="nav-link text-white/70 font-body font-medium text-xs lg:text-sm px-3 lg:px-4 py-1.5 hover:text-secondary transition-colors whitespace-nowrap"
+          >CONTACT US</a
+        >
+      </nav>
+
+      <button
+        id="mob-toggle"
+        class="nav-pill md:hidden flex flex-col gap-1.5 p-3 rounded-xl mt-1"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        <span id="mb1" class="block w-5 h-0.5 bg-white rounded"></span>
+        <span id="mb2" class="block w-5 h-0.5 bg-white rounded"></span>
+        <span
+          id="mb3"
+          class="block w-3.5 h-0.5 bg-white rounded self-end"
+        ></span>
+      </button>
+    </header>
+
+    <div
+      id="mob-menu"
+      class="fixed top-0 left-0 right-0 z-40 bg-primary/97 backdrop-blur-md pt-20 pb-8 px-6 md:hidden"
+    >
+      <nav class="flex flex-col gap-1">
+        <a
+          href="./index.html"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >HOME</a
+        >
+        <a
+          href="./about.html"
+          class="text-secondary font-heading font-bold text-sm py-3 border-b border-white/10"
+          >ABOUT US</a
+        >
+        <a
+          href="#"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >PROGRAMMES</a
+        >
+        <a
+          href="#"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >ACTIVITIES</a
+        >
+        <a
+          href="./application.html"
+          class="text-white/80 font-body font-medium text-sm py-3 border-b border-white/10 hover:text-secondary transition-colors"
+          >ADMISSION</a
+        >
+        <a
+          href="./womens_academy.html"
+          class="text-white/80 font-body font-medium text-sm py-3 hover:text-secondary transition-colors"
+          >WOMEN'S ACADEMY</a
+        >
+        <a
+          href="./contact.html"
+          class="text-white/80 font-body font-medium text-sm py-3 hover:text-secondary transition-colors"
+          >CONTACT US</a
+        >
+      </nav>
+    </div>
+
+    <!-- ══════════ ABOUT HERO ══════════ -->
+    <section
+      class="bg-primary pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden"
+      aria-label="About GreenValley"
+    >
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
+        <!-- Page label -->
+        <p
+          class="a-fade font-heading font-black text-white/70 text-center text-4xl sm:text-5xl tracking-tight mb-14 md:mb-18"
+        >
+          ABOUT US
+        </p>
+
+        <!-- 2-col: heading + image -->
+        <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <!-- Left -->
+          <div class="a-left">
+            <h1
+              class="font-heading font-black text-white text-3xl sm:text-4xl lg:text-5xl leading-[1.08] tracking-tight mb-6"
+            >
+              A campus built to grow<br />
+              skill, confidence, and<br />
+              character.
+            </h1>
+            <p
+              class="text-white/55 font-body font-light text-base leading-relaxed max-w-lg"
+            >
+              GreenValley Academy in Manjeri is designed around practical
+              learning, supportive mentorship, and a clear path from classroom
+              study to real opportunity. We nurture every student's potential
+              and prepare them to thrive beyond academics.
+            </p>
+          </div>
+
+          <!-- Right: portrait image -->
+          <div class="a-right flex justify-center md:justify-end">
+            <div
+              class="img-zoom w-full max-w-sm md:max-w-none rounded-3xl border-4 border-white/20 shadow-2xl overflow-hidden"
+            >
+              <img
+                src="./assets/image/hero1.png"
+                alt="Your description"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wave to white -->
+    <div class="wave-div" style="margin-top: -2px">
+      <svg
+        viewBox="0 0 1440 60"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        class="w-full h-10 md:h-16"
+        aria-hidden="true"
+      >
+        <path d="M0,30 C360,65 1080,-5 1440,30 L1440,60 L0,60 Z" fill="white" />
+      </svg>
+    </div>
+
+    <!-- ══════════ VIDEO + CONTENT ══════════ -->
+    <section
+      class="bg-white py-16 md:py-24 overflow-hidden"
+      aria-label="About video and content"
+    >
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
+        <!-- Full-width video thumbnail -->
+        <div
+          class="a-fade img-zoom relative w-full rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl border border-primary/10 cursor-pointer mb-14 md:mb-20 group"
+          id="play-trigger"
+          role="button"
+          tabindex="0"
+          aria-label="Play GreenValley Academy introduction video"
+        >
+          <div class="thumb w-full aspect-video bg-primary">
+            <svg
+              viewBox="0 0 1280 720"
+              class="w-full h-full"
+              xmlns="http://www.w3.org/2000/svg"
+              preserveAspectRatio="xMidYMid slice"
+              aria-hidden="true"
+            >
+              <defs>
+                <linearGradient id="vBg" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#004d2e" />
+                  <stop offset="100%" stop-color="#001a10" />
+                </linearGradient>
+                <radialGradient id="vGlow" cx="50%" cy="45%" r="45%">
+                  <stop offset="0%" stop-color="#D1FB5F" stop-opacity=".12" />
+                  <stop offset="100%" stop-color="transparent" />
+                </radialGradient>
+              </defs>
+              <rect width="1280" height="720" fill="url(#vBg)" />
+              <rect width="1280" height="720" fill="url(#vGlow)" />
+              <!-- Canopy left -->
+              <ellipse
+                cx="100"
+                cy="280"
+                rx="160"
+                ry="280"
+                fill="#1a4a1a"
+                opacity=".9"
+              />
+              <ellipse
+                cx="200"
+                cy="260"
+                rx="140"
+                ry="250"
+                fill="#2a5a2a"
+                opacity=".8"
+              />
+              <!-- Palm -->
+              <rect
+                x="420"
+                y="100"
+                width="22"
+                height="500"
+                rx="6"
+                fill="#3d2a10"
+                opacity=".85"
+              />
+              <ellipse
+                cx="431"
+                cy="110"
+                rx="120"
+                ry="44"
+                fill="#2a5a1a"
+                opacity=".85"
+                transform="rotate(-20,431,110)"
+              />
+              <ellipse
+                cx="431"
+                cy="110"
+                rx="110"
+                ry="38"
+                fill="#3a6a2a"
+                opacity=".75"
+                transform="rotate(22,431,110)"
+              />
+              <ellipse
+                cx="431"
+                cy="110"
+                rx="100"
+                ry="34"
+                fill="#2a5a1a"
+                opacity=".7"
+                transform="rotate(-45,431,110)"
+              />
+              <!-- Building -->
+              <rect
+                x="480"
+                y="180"
+                width="560"
+                height="400"
+                fill="#e8e2d5"
+                opacity=".8"
+                rx="4"
+              />
+              <rect
+                x="470"
+                y="172"
+                width="580"
+                height="18"
+                fill="#c0b09a"
+                opacity=".7"
+                rx="3"
+              />
+              <polygon
+                points="480,172 760,88 1040,172"
+                fill="#b0a08a"
+                opacity=".55"
+              />
+              <rect
+                x="660"
+                y="152"
+                width="200"
+                height="28"
+                rx="5"
+                fill="#00301C"
+              />
+              <text
+                x="760"
+                y="171"
+                text-anchor="middle"
+                fill="#D1FB5F"
+                font-size="12"
+                font-family="Roboto"
+                font-weight="900"
+                opacity=".9"
+              >
+                GREEN VALLEY ACADEMY
+              </text>
+              <!-- Windows -->
+              <rect
+                x="510"
+                y="200"
+                width="60"
+                height="75"
+                rx="3"
+                fill="#87CEEB"
+                opacity=".35"
+              />
+              <rect
+                x="600"
+                y="200"
+                width="60"
+                height="75"
+                rx="3"
+                fill="#87CEEB"
+                opacity=".35"
+              />
+              <rect
+                x="700"
+                y="200"
+                width="60"
+                height="75"
+                rx="3"
+                fill="#87CEEB"
+                opacity=".35"
+              />
+              <rect
+                x="820"
+                y="200"
+                width="60"
+                height="75"
+                rx="3"
+                fill="#87CEEB"
+                opacity=".35"
+              />
+              <rect
+                x="940"
+                y="200"
+                width="60"
+                height="75"
+                rx="3"
+                fill="#87CEEB"
+                opacity=".35"
+              />
+              <rect
+                x="510"
+                y="310"
+                width="60"
+                height="85"
+                rx="3"
+                fill="#87CEEB"
+                opacity=".3"
+              />
+              <rect
+                x="700"
+                y="310"
+                width="60"
+                height="85"
+                rx="3"
+                fill="#87CEEB"
+                opacity=".3"
+              />
+              <rect
+                x="940"
+                y="310"
+                width="60"
+                height="85"
+                rx="3"
+                fill="#87CEEB"
+                opacity=".3"
+              />
+              <!-- Door -->
+              <rect
+                x="720"
+                y="400"
+                width="80"
+                height="180"
+                rx="4"
+                fill="#5c3d20"
+                opacity=".6"
+              />
+              <!-- Canopy right -->
+              <ellipse
+                cx="1160"
+                cy="280"
+                rx="160"
+                ry="280"
+                fill="#1a4a1a"
+                opacity=".9"
+              />
+              <ellipse
+                cx="1080"
+                cy="300"
+                rx="130"
+                ry="240"
+                fill="#2a5a2a"
+                opacity=".8"
+              />
+              <!-- Ground -->
+              <rect
+                x="0"
+                y="600"
+                width="1280"
+                height="120"
+                fill="#001408"
+                opacity=".85"
+              />
+              <rect
+                x="660"
+                y="600"
+                width="160"
+                height="120"
+                fill="#a89060"
+                opacity=".3"
+              />
+              <!-- Overlay darken -->
+              <rect width="1280" height="720" fill="#00301C" opacity=".42" />
+            </svg>
+          </div>
+          <!-- Dark gradient -->
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"
+          ></div>
+          <!-- Play button -->
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div
+              class="play-ring relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/90 shadow-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+            >
+              <svg
+                class="w-8 h-8 md:w-9 md:h-9 ml-1.5 text-primary"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+          <!-- Duration tag -->
+          <div
+            class="absolute bottom-5 right-5 bg-black/60 text-white text-xs font-body font-medium px-3 py-1.5 rounded-full backdrop-blur-sm"
+          >
+            5:18
+          </div>
+        </div>
+
+        <!-- Two-column content -->
+        <div class="grid md:grid-cols-2 gap-10 lg:gap-16">
+          <div class="a-left">
+            <p
+              class="text-primary/70 font-body font-light text-sm md:text-base leading-relaxed"
+            >
+              Every individual is blessed with infinite potential. An ocean of
+              abilities brims within us. We only need to open ourselves to new
+              knowledge and practices to unleash our abilities and achieve our
+              life goals. Green Valley Academy is an educational institution
+              established in 1993, with the aim of shaping a generation of
+              young, multi-talented individuals who can bring about a social and
+              cultural renaissance. The institution inspires students to think
+              creatively, explore the lesser known realms of life and work for
+              social empowerment.
+            </p>
+          </div>
+          <div class="a-right" style="transition-delay: 0.12s">
+            <p
+              class="text-primary/70 font-body font-light text-sm md:text-base leading-relaxed"
+            >
+              Apart from classroom tutoring, the institution identifies and
+              nourishes unique talents in students and develops them into
+              outstanding skill sets. Here we also provide ample opportunities
+              for students to interact with intellectuals and thought leaders of
+              various hues. Diligently organized seminars, symposia and
+              brainstorming sessions also widen the horizons of knowledge among
+              students. The institution also lays emphasis on promoting artistic
+              and sporting talent among students with the annually organized art
+              festivals and sports events. To put it simply, Green Valley
+              Academy stands apart from other institutions by shaping
+              individuals as dynamic go-getters who can take on the various
+              challenges of life with determination, integrity and a firm moral
+              footing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ FACULTY ══════════ -->
+    <section
+      id="faculty"
+      class="bg-white pt-6 pb-20 md:pb-28 overflow-hidden"
+      aria-label="Faculty"
+    >
+      <!-- Wave from primary into white was already done; here add a subtle top divider -->
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
+        <!-- Faculty header -->
+        <div class="a-fade mb-14 md:mb-18">
+          <div class="flex flex-col sm:flex-row sm:items-end gap-6 md:gap-10">
+            <h2
+              class="font-heading font-black text-primary text-5xl sm:text-6xl md:text-7xl leading-none tracking-tight flex-shrink-0"
+            >
+              THE<br /><span class="text-secondary">FACULTY</span>
+            </h2>
+            <p
+              class="text-primary/50 font-body font-light text-sm sm:text-base leading-relaxed max-w-xs pb-1"
+            >
+              Mentors bridging the gap between ancestral knowledge and
+              futuristic systems.
+            </p>
+          </div>
+        </div>
+
+        <!-- Faculty grid -->
+        <div
+          class="a-fade grid grid-cols-2 sm:grid-cols-4 gap-8 md:gap-10 mb-20 md:mb-28"
+          style="transition-delay: 0.1s"
+        >
+          <!-- Faculty 1 -->
+          <article class="fac-card flex flex-col items-center text-center">
+            <div
+              class="fac-avatar w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-white shadow-xl mb-4 img-zoom flex-shrink-0"
+            >
+              <div class="thumb w-full h-full">
+                <svg
+                  viewBox="0 0 112 112"
+                  class="w-full h-full"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <circle cx="56" cy="56" r="56" fill="#2d5a3a" />
+                  <!-- Suit collar -->
+                  <ellipse cx="56" cy="95" rx="38" ry="22" fill="#1a1a2a" />
+                  <path
+                    d="M40 80 Q56 96 72 80"
+                    fill="none"
+                    stroke="#2a2a3a"
+                    stroke-width="2"
+                  />
+                  <!-- White shirt -->
+                  <path
+                    d="M44 82 Q56 90 68 82 L68 110 L44 110Z"
+                    fill="#f0f0f0"
+                    opacity=".6"
+                  />
+                  <!-- Tie -->
+                  <path d="M53 82 L56 94 L59 82 L56 79Z" fill="#8a2020" />
+                  <!-- Head/neck -->
+                  <ellipse cx="56" cy="48" rx="26" ry="30" fill="#d4b896" />
+                  <!-- Hair (elderly white) -->
+                  <ellipse cx="56" cy="22" rx="26" ry="14" fill="#e8e0d8" />
+                  <rect
+                    x="30"
+                    y="22"
+                    width="52"
+                    height="28"
+                    rx="4"
+                    fill="#e8e0d8"
+                    opacity=".4"
+                  />
+                  <!-- Ear -->
+                  <ellipse cx="30" cy="50" rx="7" ry="10" fill="#caa882" />
+                  <ellipse cx="82" cy="50" rx="7" ry="10" fill="#caa882" />
+                  <!-- Glasses -->
+                  <rect
+                    x="38"
+                    y="44"
+                    width="14"
+                    height="10"
+                    rx="5"
+                    fill="none"
+                    stroke="#4a3a2a"
+                    stroke-width="2"
+                  />
+                  <rect
+                    x="60"
+                    y="44"
+                    width="14"
+                    height="10"
+                    rx="5"
+                    fill="none"
+                    stroke="#4a3a2a"
+                    stroke-width="2"
+                  />
+                  <line
+                    x1="52"
+                    y1="49"
+                    x2="60"
+                    y2="49"
+                    stroke="#4a3a2a"
+                    stroke-width="1.5"
+                  />
+                  <!-- Eyes behind glasses -->
+                  <ellipse cx="45" cy="49" rx="4" ry="3" fill="#2a1a0a" />
+                  <ellipse cx="67" cy="49" rx="4" ry="3" fill="#2a1a0a" />
+                  <!-- Nose/mouth -->
+                  <path
+                    d="M54 60 Q56 66 60 62"
+                    fill="none"
+                    stroke="#b09070"
+                    stroke-width="1.3"
+                  />
+                  <path
+                    d="M47 70 Q56 76 65 70"
+                    fill="none"
+                    stroke="#9a7050"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <!-- Moustache -->
+                  <path
+                    d="M46 64 Q56 68 66 64"
+                    fill="none"
+                    stroke="#b0a898"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+            </div>
+            <h4
+              class="font-heading font-bold text-primary text-sm md:text-base tracking-tight mb-1"
+            >
+              Dr. Ashraf kalpetta
+            </h4>
+            <p
+              class="text-secondary bg-primary font-body font-medium text-[10px] tracking-wider uppercase px-2.5 py-0.5 rounded-full"
+            >
+              Principle of Academics
+            </p>
+          </article>
+
+          <!-- Faculty 2 -->
+          <article class="fac-card flex flex-col items-center text-center">
+            <div
+              class="fac-avatar w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-white shadow-xl mb-4 img-zoom flex-shrink-0"
+            >
+              <div class="thumb w-full h-full">
+                <svg
+                  viewBox="0 0 112 112"
+                  class="w-full h-full"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <circle cx="56" cy="56" r="56" fill="#3a4a6a" />
+                  <ellipse cx="56" cy="95" rx="38" ry="22" fill="#1a1a2a" />
+                  <path
+                    d="M40 80 Q56 96 72 80"
+                    fill="none"
+                    stroke="#2a2a3a"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M44 82 Q56 90 68 82 L68 110 L44 110Z"
+                    fill="#f0f0f0"
+                    opacity=".6"
+                  />
+                  <path d="M53 82 L56 94 L59 82 L56 79Z" fill="#1a3a6a" />
+                  <ellipse cx="56" cy="48" rx="25" ry="29" fill="#c8a87a" />
+                  <ellipse cx="56" cy="22" rx="25" ry="13" fill="#e0d8d0" />
+                  <rect
+                    x="31"
+                    y="22"
+                    width="50"
+                    height="28"
+                    rx="4"
+                    fill="#e0d8d0"
+                    opacity=".4"
+                  />
+                  <ellipse cx="31" cy="50" rx="7" ry="10" fill="#bea072" />
+                  <ellipse cx="81" cy="50" rx="7" ry="10" fill="#bea072" />
+                  <rect
+                    x="38"
+                    y="44"
+                    width="14"
+                    height="10"
+                    rx="5"
+                    fill="none"
+                    stroke="#3a2a1a"
+                    stroke-width="2"
+                  />
+                  <rect
+                    x="60"
+                    y="44"
+                    width="14"
+                    height="10"
+                    rx="5"
+                    fill="none"
+                    stroke="#3a2a1a"
+                    stroke-width="2"
+                  />
+                  <line
+                    x1="52"
+                    y1="49"
+                    x2="60"
+                    y2="49"
+                    stroke="#3a2a1a"
+                    stroke-width="1.5"
+                  />
+                  <ellipse cx="45" cy="49" rx="4" ry="3" fill="#1a1008" />
+                  <ellipse cx="67" cy="49" rx="4" ry="3" fill="#1a1008" />
+                  <path
+                    d="M54 60 Q56 66 60 62"
+                    fill="none"
+                    stroke="#a88858"
+                    stroke-width="1.3"
+                  />
+                  <path
+                    d="M47 70 Q56 76 65 70"
+                    fill="none"
+                    stroke="#8a6840"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M46 63 Q56 67 66 63"
+                    fill="none"
+                    stroke="#b0a898"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+            </div>
+            <h4
+              class="font-heading font-bold text-primary text-sm md:text-base tracking-tight mb-1"
+            >
+              Sarah Jenkins
+            </h4>
+            <p
+              class="text-secondary bg-primary font-body font-medium text-[10px] tracking-wider uppercase px-2.5 py-0.5 rounded-full"
+            >
+              Vice Principal of Academics
+            </p>
+          </article>
+
+          <!-- Faculty 3 -->
+          <article class="fac-card flex flex-col items-center text-center">
+            <div
+              class="fac-avatar w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-white shadow-xl mb-4 img-zoom flex-shrink-0"
+            >
+              <div class="thumb w-full h-full">
+                <svg
+                  viewBox="0 0 112 112"
+                  class="w-full h-full"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <circle cx="56" cy="56" r="56" fill="#2a4a3a" />
+                  <ellipse cx="56" cy="96" rx="38" ry="22" fill="#1a2a1a" />
+                  <path
+                    d="M40 80 Q56 96 72 80"
+                    fill="none"
+                    stroke="#1a2a1a"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M44 82 Q56 90 68 82 L68 110 L44 110Z"
+                    fill="#f0f0f0"
+                    opacity=".5"
+                  />
+                  <path d="M53 82 L56 94 L59 82 L56 79Z" fill="#1a3a1a" />
+                  <ellipse cx="56" cy="46" rx="26" ry="30" fill="#d4c0a0" />
+                  <ellipse cx="56" cy="20" rx="26" ry="14" fill="#ddd8d0" />
+                  <rect
+                    x="30"
+                    y="20"
+                    width="52"
+                    height="30"
+                    rx="4"
+                    fill="#ddd8d0"
+                    opacity=".4"
+                  />
+                  <ellipse cx="30" cy="48" rx="7" ry="11" fill="#c8b090" />
+                  <ellipse cx="82" cy="48" rx="7" ry="11" fill="#c8b090" />
+                  <rect
+                    x="37"
+                    y="42"
+                    width="14"
+                    height="10"
+                    rx="5"
+                    fill="none"
+                    stroke="#3a2a1a"
+                    stroke-width="2"
+                  />
+                  <rect
+                    x="61"
+                    y="42"
+                    width="14"
+                    height="10"
+                    rx="5"
+                    fill="none"
+                    stroke="#3a2a1a"
+                    stroke-width="2"
+                  />
+                  <line
+                    x1="51"
+                    y1="47"
+                    x2="61"
+                    y2="47"
+                    stroke="#3a2a1a"
+                    stroke-width="1.5"
+                  />
+                  <ellipse cx="44" cy="47" rx="4" ry="3" fill="#1a1008" />
+                  <ellipse cx="68" cy="47" rx="4" ry="3" fill="#1a1008" />
+                  <path
+                    d="M54 58 Q56 64 60 60"
+                    fill="none"
+                    stroke="#a89070"
+                    stroke-width="1.3"
+                  />
+                  <path
+                    d="M46 70 Q56 78 66 70"
+                    fill="none"
+                    stroke="#9a7850"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M45 63 Q56 67 67 63"
+                    fill="none"
+                    stroke="#c0b8b0"
+                    stroke-width="2.2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+            </div>
+            <h4
+              class="font-heading font-bold text-primary text-sm md:text-base tracking-tight mb-1"
+            >
+              Mujeeb 
+            </h4>
+            <p
+              class="text-secondary bg-primary font-body font-medium text-[10px] tracking-wider uppercase px-2.5 py-0.5 rounded-full"
+            >
+              Administrator of Academics
+            </p>
+          </article>
+
+          <!-- Faculty 4 -->
+          <article class="fac-card flex flex-col items-center text-center">
+            <div
+              class="fac-avatar w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-4 border-white shadow-xl mb-4 img-zoom flex-shrink-0"
+            >
+              <div class="thumb w-full h-full">
+                <svg
+                  viewBox="0 0 112 112"
+                  class="w-full h-full"
+                  xmlns="http://www.w3.org/2000/svg"
+                  aria-hidden="true"
+                >
+                  <circle cx="56" cy="56" r="56" fill="#4a3a5a" />
+                  <ellipse cx="56" cy="96" rx="38" ry="22" fill="#2a1a3a" />
+                  <path
+                    d="M40 80 Q56 96 72 80"
+                    fill="none"
+                    stroke="#2a1a3a"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M44 82 Q56 90 68 82 L68 110 L44 110Z"
+                    fill="#f0f0f0"
+                    opacity=".5"
+                  />
+                  <path d="M53 82 L56 94 L59 82 L56 79Z" fill="#6a2a2a" />
+                  <ellipse cx="56" cy="46" rx="25" ry="29" fill="#c8a07a" />
+                  <ellipse cx="56" cy="21" rx="25" ry="13" fill="#d8d0c8" />
+                  <rect
+                    x="31"
+                    y="21"
+                    width="50"
+                    height="28"
+                    rx="4"
+                    fill="#d8d0c8"
+                    opacity=".4"
+                  />
+                  <ellipse cx="31" cy="48" rx="7" ry="10" fill="#bca074" />
+                  <ellipse cx="81" cy="48" rx="7" ry="10" fill="#bca074" />
+                  <rect
+                    x="38"
+                    y="42"
+                    width="14"
+                    height="10"
+                    rx="5"
+                    fill="none"
+                    stroke="#3a2a1a"
+                    stroke-width="2"
+                  />
+                  <rect
+                    x="60"
+                    y="42"
+                    width="14"
+                    height="10"
+                    rx="5"
+                    fill="none"
+                    stroke="#3a2a1a"
+                    stroke-width="2"
+                  />
+                  <line
+                    x1="52"
+                    y1="47"
+                    x2="60"
+                    y2="47"
+                    stroke="#3a2a1a"
+                    stroke-width="1.5"
+                  />
+                  <ellipse cx="45" cy="47" rx="4" ry="3" fill="#1a1008" />
+                  <ellipse cx="67" cy="47" rx="4" ry="3" fill="#1a1008" />
+                  <path
+                    d="M54 58 Q56 64 60 60"
+                    fill="none"
+                    stroke="#a88058"
+                    stroke-width="1.3"
+                  />
+                  <path
+                    d="M46 70 Q56 77 66 70"
+                    fill="none"
+                    stroke="#8a6040"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                  />
+                  <path
+                    d="M45 63 Q56 67 67 63"
+                    fill="none"
+                    stroke="#b0a898"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+              </div>
+            </div>
+            <h4
+              class="font-heading font-bold text-primary text-sm md:text-base tracking-tight mb-1"
+            >
+              Mariam Al-Sayed
+            </h4>
+            <p
+              class="text-secondary bg-primary font-body font-medium text-[10px] tracking-wider uppercase px-2.5 py-0.5 rounded-full"
+            >
+              Creative Director
+            </p>
+          </article>
+        </div>
+
+        <!-- Faculty bottom: text left + layered image right -->
+        <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <!-- Text -->
+          <div class="a-left">
+            <p
+              class="text-primary/65 font-body font-light text-sm md:text-base leading-relaxed mb-6"
+            >
+              The faculty of the institution is a highly efficient force
+              spearheaded by the Principal Dr. Ashraf Kalpetta, who has authored
+              over 20 books and is an academician of the highest order. He is
+              assisted by a Vice Principal, Administrator and Teaching staff.
+            </p>
+            <p
+              class="text-primary/65 font-body font-light text-sm md:text-base leading-relaxed"
+            >
+              The teachers are a young and energetic group, always eager to
+              identify and nurture the skills of students. They are subject
+              experts willing to clarify any doubts raised by students and
+              strive to be friendly mentors. In other words, at the institution
+              no student-teacher gap exists, but only harmonious relationships
+              built on mutual respect and shared purpose.
+            </p>
+          </div>
+
+          <!-- Layered image -->
+          <div
+            class="a-right relative flex justify-center md:justify-end"
+            style="transition-delay: 0.12s"
+          >
+            <div class="relative w-full max-w-sm md:max-w-none">
+              <!-- Accent background layer -->
+              <div class="layer-accent rounded-2xl md:rounded-3xl"></div>
+              <!-- Main image -->
+              <div
+                class="relative z-10 img-zoom rounded-2xl md:rounded-3xl overflow-hidden shadow-xl border-2 border-white aspect-[4/3]"
+              >
+                <div class="thumb w-full h-full bg-primary">
+                  <svg
+                    viewBox="0 0 480 360"
+                    class="w-full h-full"
+                    xmlns="http://www.w3.org/2000/svg"
+                    preserveAspectRatio="xMidYMid slice"
+                    aria-label="Students working together in lab activity"
+                    aria-hidden="true"
+                  >
+                    <rect width="480" height="360" fill="#1a3a2a" />
+                    <!-- Room background -->
+                    <rect
+                      x="0"
+                      y="220"
+                      width="480"
+                      height="140"
+                      fill="#0f2018"
+                      opacity=".8"
+                    />
+                    <line
+                      x1="0"
+                      y1="220"
+                      x2="480"
+                      y2="220"
+                      stroke="#2a5a3a"
+                      stroke-width="1.5"
+                      opacity=".5"
+                    />
+                    <!-- Workshop table -->
+                    <rect
+                      x="60"
+                      y="195"
+                      width="360"
+                      height="50"
+                      rx="5"
+                      fill="#2d1f10"
+                      opacity=".85"
+                    />
+                    <!-- Components/items on table -->
+                    <rect
+                      x="90"
+                      y="182"
+                      width="35"
+                      height="18"
+                      rx="3"
+                      fill="#004828"
+                      opacity=".9"
+                    />
+                    <rect
+                      x="145"
+                      y="178"
+                      width="22"
+                      height="22"
+                      rx="3"
+                      fill="#3a6b45"
+                      opacity=".85"
+                    />
+                    <circle
+                      cx="200"
+                      cy="188"
+                      r="10"
+                      fill="#005a33"
+                      stroke="#D1FB5F"
+                      stroke-width="1.2"
+                      opacity=".8"
+                    />
+                    <rect
+                      x="230"
+                      y="183"
+                      width="28"
+                      height="14"
+                      rx="3"
+                      fill="#004828"
+                      opacity=".9"
+                    />
+                    <rect
+                      x="278"
+                      y="180"
+                      width="18"
+                      height="17"
+                      rx="3"
+                      fill="#3a6b45"
+                      opacity=".85"
+                    />
+                    <circle
+                      cx="320"
+                      cy="187"
+                      r="9"
+                      fill="#005a33"
+                      stroke="#D1FB5F"
+                      stroke-width="1.2"
+                      opacity=".8"
+                    />
+                    <rect
+                      x="350"
+                      y="182"
+                      width="30"
+                      height="16"
+                      rx="3"
+                      fill="#004828"
+                      opacity=".9"
+                    />
+                    <!-- Wire/circuit line -->
+                    <path
+                      d="M108 188 Q130 175 145 188 Q160 200 200 188 Q240 176 258 188 Q278 200 320 188 Q350 176 365 188"
+                      fill="none"
+                      stroke="#D1FB5F"
+                      stroke-width="1"
+                      opacity=".35"
+                    />
+                    <!-- Student 1 (blue shirt, standing left) -->
+                    <circle cx="115" cy="155" r="28" fill="#c8a882" />
+                    <ellipse cx="115" cy="210" rx="35" ry="22" fill="#3a5a8a" />
+                    <!-- Hair -->
+                    <ellipse cx="115" cy="130" rx="28" ry="15" fill="#1a0f08" />
+                    <rect
+                      x="87"
+                      y="130"
+                      width="56"
+                      height="30"
+                      rx="3"
+                      fill="#1a0f08"
+                      opacity=".35"
+                    />
+                    <!-- Eyes -->
+                    <ellipse cx="103" cy="155" rx="7" ry="5.5" fill="#1a1008" />
+                    <ellipse cx="127" cy="155" rx="7" ry="5.5" fill="#1a1008" />
+                    <circle cx="105" cy="153" r="2" fill="white" />
+                    <circle cx="129" cy="153" r="2" fill="white" />
+                    <path
+                      d="M113 165 Q115 172 119 167"
+                      fill="none"
+                      stroke="#a88060"
+                      stroke-width="1.2"
+                    />
+                    <path
+                      d="M104 177 Q115 184 126 177"
+                      fill="none"
+                      stroke="#9a7050"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                    <!-- Arm reaching to table -->
+                    <path
+                      d="M100 190 Q85 195 80 200"
+                      stroke="#c8a882"
+                      stroke-width="14"
+                      stroke-linecap="round"
+                      fill="none"
+                    />
+                    <!-- Student 2 (centre) -->
+                    <circle cx="220" cy="150" r="30" fill="#d4b896" />
+                    <ellipse cx="220" cy="208" rx="38" ry="24" fill="#2a4a2a" />
+                    <ellipse cx="220" cy="123" rx="30" ry="16" fill="#0a0808" />
+                    <rect
+                      x="190"
+                      y="123"
+                      width="60"
+                      height="34"
+                      rx="3"
+                      fill="#0a0808"
+                      opacity=".35"
+                    />
+                    <ellipse cx="205" cy="150" rx="8" ry="6" fill="#1a1008" />
+                    <ellipse cx="235" cy="150" rx="8" ry="6" fill="#1a1008" />
+                    <circle cx="207" cy="148" r="2.5" fill="white" />
+                    <circle cx="237" cy="148" r="2.5" fill="white" />
+                    <path
+                      d="M218 162 Q220 170 224 165"
+                      fill="none"
+                      stroke="#a88060"
+                      stroke-width="1.3"
+                    />
+                    <path
+                      d="M207 178 Q220 186 233 178"
+                      fill="none"
+                      stroke="#9a7050"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                    <!-- Both hands on table -->
+                    <path
+                      d="M200 195 Q190 198 185 200"
+                      stroke="#d4b896"
+                      stroke-width="13"
+                      stroke-linecap="round"
+                      fill="none"
+                    />
+                    <path
+                      d="M240 195 Q255 198 262 200"
+                      stroke="#d4b896"
+                      stroke-width="13"
+                      stroke-linecap="round"
+                      fill="none"
+                    />
+                    <!-- Student 3 (right) -->
+                    <circle cx="360" cy="155" r="27" fill="#c0a070" />
+                    <ellipse cx="360" cy="210" rx="34" ry="21" fill="#4a3a2a" />
+                    <ellipse cx="360" cy="131" rx="27" ry="14" fill="#2a1808" />
+                    <rect
+                      x="333"
+                      y="131"
+                      width="54"
+                      height="28"
+                      rx="3"
+                      fill="#2a1808"
+                      opacity=".3"
+                    />
+                    <ellipse cx="347" cy="155" rx="7" ry="5.5" fill="#1a1008" />
+                    <ellipse cx="373" cy="155" rx="7" ry="5.5" fill="#1a1008" />
+                    <circle cx="349" cy="153" r="2" fill="white" />
+                    <circle cx="375" cy="153" r="2" fill="white" />
+                    <path
+                      d="M358 165 Q360 172 364 167"
+                      fill="none"
+                      stroke="#9a7050"
+                      stroke-width="1.2"
+                    />
+                    <path
+                      d="M349 177 Q360 184 371 177"
+                      fill="none"
+                      stroke="#9a7050"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                    />
+                    <path
+                      d="M340 192 Q328 196 322 200"
+                      stroke="#c0a070"
+                      stroke-width="12"
+                      stroke-linecap="round"
+                      fill="none"
+                    />
+                    <!-- Light cone from ceiling -->
+                    <path
+                      d="M200 0 L140 180 L260 180Z"
+                      fill="#f5e8c0"
+                      opacity=".04"
+                    />
+                    <!-- Sepia-warm overlay -->
+                    <rect
+                      width="480"
+                      height="360"
+                      fill="#7c5030"
+                      opacity=".12"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video modal -->
+    <div
+      id="vid-modal"
+      class="fixed inset-0 z-50 bg-black/85 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Academy video"
+    >
+      <div
+        class="relative w-full max-w-4xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl"
+      >
+        <div
+          class="w-full h-full flex flex-col items-center justify-center bg-primary gap-4"
+        >
+          <svg
+            class="w-16 h-16 text-secondary opacity-40"
+            viewBox="0 0 64 64"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M16 12v40l36-20z" />
+          </svg>
+          <p class="text-white/35 font-body text-sm">
+            Video player would load here
+          </p>
+        </div>
+        <button
+          id="close-vid"
+          class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-white transition-colors"
+          aria-label="Close video"
+        >
+          <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M5 5l10 10M15 5L5 15"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ══════════ WAVE + FOOTER ══════════ -->
+    <div class="wave-div">
+      <svg
+        viewBox="0 0 1440 56"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        class="w-full h-10 md:h-14"
+        aria-hidden="true"
+      >
+        <path
+          d="M0,32 C240,60 480,0 720,32 C960,60 1200,0 1440,32 L1440,56 L0,56 Z"
+          fill="#00301C"
+        />
+      </svg>
+    </div>
+
+    <footer class="bg-primary pt-14 pb-0" aria-label="Site footer">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 md:px-12">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 pb-14 border-b border-white/10"
+        >
+          <div>
+            <div class="flex items-center gap-2.5 mb-5">
+              <span
+                class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 2C8 2 4 5 4 10c0 4 3 7 8 12 5-5 8-8 8-12 0-5-4-8-8-8z"
+                    fill="#00301C"
+                  />
+                </svg>
+              </span>
+              <span
+                class="font-heading font-black text-white text-base tracking-tight"
+                >GREEN<span class="text-secondary">VALLEY</span></span
+              >
+            </div>
+            <ul class="space-y-3.5 text-white/50 text-sm font-body font-light">
+              <li class="flex items-start gap-2.5">
+                <svg
+                  class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M8 8.5a2 2 0 100-4 2 2 0 000 4z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M8 14s5-4 5-7a5 5 0 00-10 0c0 3 5 7 5 7z"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                </svg>
+                <span
+                  >Green Valley Academy, Pulpatta P.O., Manjeri, Malappuram,
+                  Kerala – 676123</span
+                >
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg
+                  class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <path
+                    d="M13 10.7l-2-1a.8.8 0 00-.9.2l-.9 1a7.4 7.4 0 01-3.3-3.3l1-.9a.8.8 0 00.2-.9l-1-2A.8.8 0 005.4 4H4a.8.8 0 00-.8.8A9.6 9.6 0 0012.8 14a.8.8 0 00.8-.8v-1.7a.8.8 0 00-.6-.8z"
+                    stroke="currentColor"
+                    stroke-width="1.3"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                <span>+91 48329 44429 | +91 48329699 66</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg
+                  class="w-4 h-4 text-secondary flex-shrink-0 mt-0.5"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                >
+                  <rect
+                    x="2"
+                    y="4"
+                    width="12"
+                    height="9"
+                    rx="1.5"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                  <path
+                    d="M2 6l6 4 6-4"
+                    stroke="currentColor"
+                    stroke-width="1.4"
+                  />
+                </svg>
+                <a
+                  href="mailto:greenvalleymanjeri@gmail.com"
+                  class="hover:text-secondary transition-colors break-all"
+                  >greenvalleymanjeri@gmail.com</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4
+              class="font-heading font-bold text-white text-base mb-5 tracking-tight"
+            >
+              Courses
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Computer Application</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Graphic Designing</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Electrical Technician</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Account Executive</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Arabic Translator</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4
+              class="font-heading font-bold text-white text-base mb-5 tracking-tight"
+            >
+              Quick Links
+            </h4>
+            <ul class="space-y-2.5">
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Faculty Profiles</a
+                >
+              </li>
+              <li>
+                <a
+                  href="./application.html"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Admission Form</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Campus Tour</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >News &amp; Archive</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contact.html"
+                  class="foot-link text-white/50 text-sm font-body font-light"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4
+              class="font-heading font-bold text-white text-base mb-5 tracking-tight"
+            >
+              Connect
+            </h4>
+            <ul class="space-y-3.5">
+              <li>
+                <a
+                  href="#"
+                  class="foot-sl text-white/50 text-sm font-body font-light"
+                  ><span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                    ><svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M8 1.6a6.4 6.4 0 100 12.8A6.4 6.4 0 008 1.6zM5.5 5.5h1.8V4.7c0-1.2.6-1.8 2-1.8h1.3v1.8H9.4c-.5 0-.5.2-.5.5V5.5h1.7l-.2 2H8.9V13H7V7.5H5.8l.2-2z"
+                      /></svg></span
+                  >Facebook</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-sl text-white/50 text-sm font-body font-light"
+                  ><span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                    ><svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                    >
+                      <rect x="3" y="3" width="10" height="10" rx="3" />
+                      <circle cx="8" cy="8" r="2.5" />
+                      <circle
+                        cx="11.2"
+                        cy="4.8"
+                        r=".7"
+                        fill="currentColor"
+                        stroke="none"
+                      /></svg></span
+                  >Instagram</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-sl text-white/50 text-sm font-body font-light"
+                  ><span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                    ><svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M15 3.5a6 6 0 01-1.65.46 2.9 2.9 0 001.26-1.6 5.8 5.8 0 01-1.83.7A2.9 2.9 0 008 5.57a8.2 8.2 0 01-5.96-3.02 2.9 2.9 0 00.9 3.86 2.87 2.87 0 01-1.31-.36v.04a2.9 2.9 0 002.32 2.84 2.9 2.9 0 01-1.3.05 2.9 2.9 0 002.7 2.01A5.82 5.82 0 011 12.4a8.2 8.2 0 004.44 1.3c5.33 0 8.25-4.42 8.25-8.25l-.01-.38A5.9 5.9 0 0015 3.5z"
+                      /></svg></span
+                  >Twitter</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="foot-sl text-white/50 text-sm font-body font-light"
+                  ><span
+                    class="w-7 h-7 rounded-lg bg-white/8 flex items-center justify-center flex-shrink-0"
+                    ><svg
+                      class="w-3.5 h-3.5 text-secondary"
+                      viewBox="0 0 16 16"
+                      fill="currentColor"
+                    >
+                      <circle cx="10" cy="10" r="4.5" fill="#25D366" />
+                      <path
+                        d="M8.5 9.2c.2.9.9 1.5 1.7 1.7l.6-.6c.1-.1.3-.1.5 0l.9.7c.1.1.1.3 0 .5-.5.5-1.3.7-1.9.4A4 4 0 017.9 9.5c-.4-.6-.2-1.4.4-1.9.1-.1.3-.1.5 0l.7.9c.1.1.1.3 0 .5l-.9.2z"
+                        fill="white"
+                      /></svg></span
+                  >WhatsApp</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="flex flex-col sm:flex-row items-center justify-between gap-3 py-5 text-white/30 text-xs font-body font-light"
+        >
+          <p>© COPYRIGHT 2024 GREEN VALLEY ACADEMY. ALL RIGHTS RESERVED.</p>
+          <div class="flex gap-5">
+            <a
+              href="#"
+              class="hover:text-secondary transition-colors tracking-wide"
+              >PRIVACY POLICY</a
+            >
+            <a
+              href="#"
+              class="hover:text-secondary transition-colors tracking-wide"
+              >TERMS OF SERVICE</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Mobile nav
+      var mT = document.getElementById("mob-toggle"),
+        mM = document.getElementById("mob-menu");
+      var mb1 = document.getElementById("mb1"),
+        mb2 = document.getElementById("mb2"),
+        mb3 = document.getElementById("mb3");
+      var mO = false;
+      mT.addEventListener("click", function () {
+        mO = !mO;
+        mM.classList.toggle("open", mO);
+        mT.setAttribute("aria-expanded", mO);
+        mb1.style.transform = mO ? "rotate(45deg) translate(4px,5px)" : "";
+        mb2.style.opacity = mO ? "0" : "1";
+        mb3.style.transform = mO ? "rotate(-45deg) translate(4px,-5px)" : "";
+        mb3.style.width = mO ? "20px" : "";
+      });
+      mM.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          mO = false;
+          mM.classList.remove("open");
+          mb1.style.transform = mb2.style.opacity = mb3.style.transform = "";
+          mb3.style.width = "";
+        });
+      });
+
+      // Video modal
+      var modal = document.getElementById("vid-modal");
+      var pt = document.getElementById("play-trigger");
+      var cv = document.getElementById("close-vid");
+      function openMod() {
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeMod() {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      pt && pt.addEventListener("click", openMod);
+      pt &&
+        pt.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") openMod();
+        });
+      cv && cv.addEventListener("click", closeMod);
+      modal.addEventListener("click", function (e) {
+        if (e.target === modal) closeMod();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeMod();
+      });
+
+      // Scroll reveal
+      var els = document.querySelectorAll(".a-fade,.a-left,.a-right");
+      var obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("vis");
+              obs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      els.forEach(function (el) {
+        obs.observe(el);
+      });
+    </script>
+  </body>
+</html>
